@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\title{Hausdorff Spaces}
+\author{Aaron Honculada}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+A \textbf{Hausdorff space} (also called a \textbf{T2 space}) is a topological space in which, for any two distinct points,
+there exists disjoint open neighborhoods around each point. This property ensures that points in the space are ``separated"
+in a certain sense, which is an important condition in many areas of topology and analysis.
+
+\section{Formal Definition}
+\hypertarget{hausdorff-definition}{}
+A topological space $X$ is \textbf{Hausdorff} if, for any two distinct points $x, y \in X$, there exist open
+sets $U$ and $V$ such that:
+\begin{enumerate}
+    \item $x \in U$
+    \item $y \in V$
+    \item $U \cap V = \emptyset$ (i.e. $U$ and $V$ are disjoint).
+\end{enumerate}
+In other words, you can find disjoint open neighborhoods for any two distinct points in the space, meaning that
+the space is ``separated" enough to allow for a clear distinction between points.
+
+\section{Why is this important?}
+\begin{itemize}
+    \item The Hausdorff condition is crucial for ensuring the uniqueness of limits. In Hausdorff spaces, sequences
+    (or nets) of points that converge to a limit do so in a well-defined way, and the limit of a converging
+    sequence is unique.
+    \item Many important spaces in mathematics, such as metric spaces, Euclidean spaces, and manifolds, are Hausdorff
+    because this property is desireable for the well-behavedness of convergence and continuity.
+\end{itemize}
+
+
+\section{Example of Hausdorff Space}
+\begin{itemize}
+    \item Euclidean space $\mathbb{R}^n$ (with the standard topology) is Hausdorff because
+    for any two distinct points we can always find disjoint open neighborhoods around them. For example,
+    in $\mathbb{R}^2$ you can choose two small balls centered at the points that do not overlap.
+\end{itemize}
+
+\section{Example of Non-Hausdorff Space}
+\begin{itemize}
+    \item The \textbf{co-finite topology} on an infinite set $X$, where the open sets are either $X$ itself or
+    subsets of $X$ with finite complements is \textbf{not Hausdorff}. In this topology, for any two distinct points
+    $x$ and $y$, any open sets containing them both must be large (since their complements are finite),
+    so it is impossible to separate them with disjoint open sets.
+\end{itemize}
+
+
+
+
+\end{document}

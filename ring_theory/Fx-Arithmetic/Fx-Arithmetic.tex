@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\title{MATH 402 Homework 6}
+\author{Aaron Honculada}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+Write out the addition and multiplication tables for the congruence class rings $F[x]/p(x)$. In each case, is $F[x]/p(x)$ a field?
+
+\subsection{Let $F = \mathbb{Z}_3$ and $p(x) = x^2 + 1$}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|ccc}
+        + & 0 & 1 & x \\
+        \hline
+        0 & 0 & 1 & x \\
+        1 & 1 & 2 & x+1 \\
+        x & x & x+1 & 2x \\
+    \end{tabular}
+    \caption{Addition table for \(\mathbb{Z}_3 / (x^2+1)\)}
+\end{table}
+
+
+\subsection{Let $F = \mathbb{Z}_2$ and $p(x) = x^2 + 1$}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|ccc}
+        + & 0 & 1 & x \\
+        \hline
+        0 & 0 & 1 & x \\
+        1 & 1 & 0 & x+1 \\
+        x & x & x+1 & 0 \\
+    \end{tabular}
+    \caption{Addition table for \(\mathbb{Z}_2 / (x^2+1)\)}
+\end{table}
+
+\section{Problem 2}
+
+\section{Problem 3}
+List all the possible congruence classes in \(\mathbb{Z}_2 / (x^3 + x + 1)\).
+
+The possible congruence classes are represented by the polynomials of degree less than 3 with coefficients in \(\mathbb{Z}_2\). These are:
+
+\[
+\begin{aligned}
+    &0, \\
+    &1, \\
+    &x, \\
+    &x+1, \\
+    &x^2, \\
+    &x^2+1, \\
+    &x^2+x, \\
+    &x^2+x+1.
+\end{aligned}
+\]
+
+\section{Problem 4}
+
+\section{Problem 5}
+
+\section{Problem 6}
+
+\section{Problem 7}
+
+
+\end{document}

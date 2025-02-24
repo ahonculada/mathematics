@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+\usepackage{datetime} % Add this line to include the datetime package
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+\title{Subgroup}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+A \textbf{subgroup} is a subset of a group that is itself a group under the same operation.
+\section{Definition}
+Let $G$ be a group with operation $*$. A subset $H \subseteq G$ is called 
+a \textbf{subgroup} of $G$ if:
+\begin{enumerate}
+    \item \textbf{Closure}: For all $a, b \in H$, we have $a * b \in H$.
+    \item \textbf{Identity}: The identity element $e$ of $G$ is in $H$.
+    \item \textbf{Inverses}: For each $a \in H$, the inverse $a^{-1}$ is also in $H$.
+\end{enumerate}
+If these conditions hold, we write $H \leq G$, meaning that $H$ is a subgroup of $G$.
+
+
+
+\end{document}

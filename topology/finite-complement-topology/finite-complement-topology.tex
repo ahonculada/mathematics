@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage{hyperref}
+
+\title{Finite Complement Topology}
+\author{Aaron Honculada}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Definition}
+
+The \textbf{finite complement topology} on a set $X$ is defined as follows:
+
+\begin{itemize}
+    \item Open sets are:
+    \begin{itemize}
+        \item The empty set $\emptyset$.
+        \item Any subset of $X$ whose complement is finite(i.e., contains all but finitely many elements of $X$).
+    \end{itemize}
+    \item Closed sets are:
+    \begin{itemize}
+        \item The whole space $X$.
+        \item Any finite subset of $X$.
+    \end{itemize}
+\end{itemize}
+
+\section{Example: Finite Complement Topology on $\mathbb{R}$}
+Let $X=\mathbb{R}$ with the finite complement topology. Then:
+
+\begin{itemize}
+    \item The set $(-\infty, 0)$ is not open because its complement $[0, \infty)$ is not finite.
+    \item The set $\mathbb{R}\setminus \{1,2,3\}$ is open because its complement $\{1,2,3\}$ is finite.
+    \item Any finite set, like $\{5,7,9\}$, is \textbf{closed}.
+\end{itemize}
+
+\section{Example: Finite Complement Topology on $\mathbb{Z}$}
+Let $X=\mathbb{Z}$ be the set of integers, and define a topology $\tau$ where:  
+
+\begin{itemize}
+    \item The open sets in $\mathbb{Z}$ are:
+    \begin{itemize}
+        \item The empty set $\emptyset$.
+        \item The whole space $\mathbb{Z}$.
+        \item Any subset of $\mathbb{Z}$ whose complement is finite, meaning a set $U \subseteq
+        \mathbb{Z}$ is open if and only if $\mathbb{Z} \setminus U$ is finite.
+    \end{itemize}
+    \item The closed sets in $\mathbb{Z}$ are:
+    \begin{itemize}
+        \item The whole space $\mathbb{Z}$.
+        \item Any finite subset of $\mathbb{Z}$.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item The set $\{0,1,2\}$ is not open because its complement $\mathbb{Z}\setminus \{0,1,2\}$ is not finite.
+\end{itemize}
+\subsection{Why is this interesting?}
+\begin{itemize}
+    \item The space ($\mathbf{Z},\tau)$ is \textbf{not Hausdorff} because
+    distiinct points cannot be separated by disjoint open sets.
+    \item For example, the points $0$ and $1$ cannot be separated by disjoint open sets because
+    the intersection of any open set containing $0$ and any open set containing $1$ is non-empty
+    (it contains $0$ and $1$).
+\end{itemize}
+
+\section{Example: Finite Complement Topology on a finite set}
+Let $X=\{a,b,c,d\}$ be a finite set, and define a topology $\tau$ where:
+
+\begin{itemize}
+    \item The open sets in $X$ are:
+    \begin{itemize}
+        \item The empty set $\emptyset$.
+        \item The whole space $X=\{a,b,c,d\}$.
+        \item Any subset $U$ such that $X\setminus U$ is \textbf{finite}.
+    \end{itemize}
+    \item Since $X$ is already finite:
+    The complement of any subset of $X$ is always finite!
+    This means that \textbf{every subset} of $X$ is open, so:
+    \begin{itemize}
+        \item $\tau = \mathcal{P}(X)= \text{the discrete topology}$
+    \end{itemize}
+\end{itemize}
+
+\section{Example: Finite Complement Topology on $\mathbb{R}$}
+Let $X=\mathbb{R}$ with the finite complement topology. Then:
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+\title{Compactness}
+\author{Aaron Honculada}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Why is compactness important?}
+\subsection{Generalization of finite sets}
+Compactness can be though of as a generalization of \textbf{finite sets} to infinite spaces. Many properties
+that hold for finite sets extend to compact spaces:
+\begin{itemize}
+    \item In finite sets, any sequence has a convergent subsequence.
+    \item In compact spaces, any sequence has a \textbf{convergent subsequence} (Bolzano-Weierstrass Theorem).
+    \item In finite sets, every function is bounded.
+    \item In compact spaces, every \textbf{continuous function} is bounded (Extreme Value Theorem).
+\end{itemize}
+
+\subsection{Compact sets behave well under Continuous Maps}
+If $f: X \to Y$ is \textbf{continuous} and $X$ is compact, then:
+\begin{itemize}
+    \item The \textbf{image} $f(X)$ is compact.
+    \item If $Y$ is \href{run:../hausdorff/hausdorff.pdf#nameddest=hausdorff-definition}{Hausdorff}, then $f$ is \textbf{closed}.
+    \item If $f$ is also \textbf{injective}, then $f$ is \textbf{homeomorphism onto its image}, which
+    is very useful in functional analysis.
+\end{itemize}
+
+\subsection{Extreme Value Theorem: Maximum and Minimum always exist}
+If $f: X \to \mathbb{R}$ is \textbf{continuous} and $X$ is compact, then $f$ attains its maximum and minimum values.
+This is crucial in optimization problems, physics, and economics.
+Example:
+\begin{itemize}
+    \item If $f(x)$ is continuous on a closed interval $[a, b]$, then it has a maximum and a minimum, 
+    ensuring stability in real-world problems.
+\end{itemize}
+
+\subsection{Compactness leads to Convergence: Bolzano-Weierstrass Theorem \& Sequential Compactness}
+\begin{itemize}
+    \item In compact spaces, every sequence has a \textbf{convergent subsequence}.
+    \item This is why compactness is essential in analysis and metric spaces--it guarantees that ``infinite''
+    sequences do not escape to infinity.
+\end{itemize}
+Example:
+\begin{itemize}
+    \item The \textbf{unit interval} $[0, 1]$ is compact, so any bounded sequence has a convergent subsequence.
+    \item The open interval $(0, 1)$ is \textbf{not} compact--sequences can approach 0 or 1, but not converge
+    inside of $(0, 1)$.
+\end{itemize}
+
+
+\subsection{Compactness helps prove existence theorems}
+Compactness often helps prove that solutions to problems exist.
+Example:
+\begin{itemize}
+    \item In \textbf{differential equations}, compactness is used in the \textbf{Arzel\`{a}-Ascoli Theorem} to prove
+    the existence of solutions.
+    \item In \textbf{functional analysis}, the \textbf{Riesz Representation Theorem} and \textbf{Hahn-Banach Theorem}
+    rely on compactness.
+\end{itemize}
+
+\subsection{Heine-Borel Theorem: Compactness in Euclidean Space}
+In $\mathbb{R}^n$, a set is compact \textbf{if and only if it is closed and bounded}. This makes 
+compactness easy to check in Euclidean spaces.
+Example:
+\begin{itemize}
+    \item The \textbf{closed interval} $[0, 1]$ is compact.
+    \item The \textbf{open interval} $(0, 1)$ is \textbf{not} compact, because it is not closed.
+\end{itemize}
+
+\subsection{Compactness Topology and Geometry}
+\begin{itemize}
+    \item \textbf{Compact spaces are ``small" in a certain sense.}
+    \begin{itemize}
+        \item Example: The unit sphere $S^n$ is compact, while $\mathbb{R}^n$ is not.
+    \end{itemize}
+    \item Many important theorems in topology hold only for compact spaces.
+    \begin{itemize}
+        \item The \textbf{Tychonoff Theorem}, which states that any product of compact spaces is compact.
+        \item The \textbf{Alexander Duality}, which is a key result in algebraic topology.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Compactification: Adding Points to Make Spaces Compact}
+Sometimes, a space is not compact, but we can \textbf{compactify} it by adding points.
+Example:
+\begin{itemize}
+    \item The \textbf{one-point compactification} of $\mathbb{R}$ adds a point at infinity,
+        turning $\mathbb{R}$ into a \textbf{compact space} homeomorphic to $S^1/ \{N\}$.
+    \item The \textbf{Stone-Cech Compactification} extends this idea in a more general way.
+\end{itemize}
+
+
+\end{document}
