@@ -1,3 +1,13 @@
+# Mex Usage
+
+```
+mex create <directory-path>
+mex open <file-path>
+mex remove <file-path>
+```
+
+
+
 # Live TeX Instructions
 * Install MacTex
 * Claim file ownership
