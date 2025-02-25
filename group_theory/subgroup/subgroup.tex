@@ -21,7 +21,7 @@
 
 A \textbf{subgroup} is a subset of a group that is itself a group under the same operation.
 \section{Definition}
-Let $G$ be a group with operation $*$. A subset $H \subseteq G$ is called 
+Let $G$ be a group with operation $*$ and identity element $e$. A subset $H \subseteq G$ is called 
 a \textbf{subgroup} of $G$ if:
 \begin{enumerate}
     \item \textbf{Closure}: For all $a, b \in H$, we have $a * b \in H$.
@@ -30,6 +30,28 @@ a \textbf{subgroup} of $G$ if:
 \end{enumerate}
 If these conditions hold, we write $H \leq G$, meaning that $H$ is a subgroup of $G$.
 
+\section{Examples}
+\subsection{Integers in Rational Numbers}
+\begin{itemize}
+    \item $(\mathbb{Q}, +)$ is a group under addition.
+    \item $\mathbb{Z}$ is a subgroup of $\mathbb{Q}$ because:
+    \begin{itemize}
+        \item \textbf{Closure}: For all $a, b \in \mathbb{Z}$, we have $a + b \in \mathbb{Z}$.
+        \item \textbf{Identity}: The identity element $0 \in \mathbb{Z}$.
+        \item \textbf{Inverses}: For each $a \in \mathbb{Z}$, the inverse $-a \in \mathbb{Z}$.
+        \item So $\mathbb{Z} \leq \mathbb{Q}$ under addition.
+    \end{itemize}
+\end{itemize}
 
+\subsection{Rotations in Symmetry Group \texorpdfstring{$S_3$}{S3}}
+\label{subsec:rotations_s3}
+The \textbf{symmetric group} $S_3$ is the group of all permutations of 3 elements.
+\[
+    S_3 = \{e, (12), (13), (23), (123), (132)\}
+\]
+The set of \textbf{only cyclic rotations} forms a subgroup:
+\[
+    H = \{e, (123), (132)\}
+\]
 
 \end{document}
