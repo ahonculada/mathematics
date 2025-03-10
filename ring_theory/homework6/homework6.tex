@@ -1,0 +1,336 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{float}
+
+\title{MATH 402 Homework 6}
+\author{Aaron Honculada}
+\date{February 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+\subsection{Show that $\sqrt{p}$ is irrational for every positive prime integer $p$.}
+
+\begin{proof}
+    We use proof by contradiction. Suppose that $\sqrt{p}$ is rational. Then we can write $\sqrt{p} = \frac{a}{b}$ where $a$ and $b$ are integers.
+    Without loss of generality, we can assume that $a$ and $b$ are coprime, i.e. $\gcd(a,b) = 1$. Then we have $p = \frac{a^2}{b^2}$ which implies that $p \mid a^2$. Since $p$ is prime,
+    we must have $p \mid a$. Therefore, we can write $a = kp$ for some integer $k$. Substituting, we get:
+    \[
+        p = \frac{k^2p^2}{b^2} \implies p(b^2) = k^2p^2 \implies b^2 = k^2p \implies p \mid b^2.
+    \]
+    Since $p$ is prime, we must have $p \mid b$. But this contradicts the fact that $\gcd(a,b) = 1$ since it was shown that $p \mid a$ and $p \mid b$. Therefore, $\sqrt{p}$ must be irrational
+    for every positive prime integer $p$.
+\end{proof}
+
+\section{Problem 2}
+\subsection{Show there are infinitely many integers $k$ such that $x^9 + 12x^5 + 21x + k$ is irreducible over $\mathbb{Q}[x]$.}
+
+\begin{proof}
+    We use Eisenstein's criterion to show that $x^9 + 12x^5 + 21x + k$ is irreducible over $\mathbb{Q}[x]$ for some prime $p$ if:
+    \begin{itemize}
+        \item $p \mid 12$
+        \item $p \mid 21$
+        \item $p \nmid 1$
+        \item $p^2 \nmid k$
+    \end{itemize}
+    We choose $p=3$ and the first three conditions are satisfied. Recall that the set of integers satisfying $k \equiv 0 \pmod{3}$ but 
+    $k \not\equiv 0 \pmod{9}$ is infinite. This is the set $3\mathbb{Z} \setminus 9\mathbb{Z}$ whose cardinality is countably infinite. Therefore
+    there are infinitely many integers $k$ such that $x^9 + 12x^5 + 21x + k$ is irreducible over $\mathbb{Q}[x]$.
+\end{proof}
+
+\section{Problem 3}
+\subsection{Prove that for $p$ prime, $f(x) = x^{p-1} + x^{p-2} + \cdots + x + 1$ is irreducible in $\mathbb{Q}[x]$.}
+
+\begin{proof}
+    We consider $f(x)$ as the sum of the first $p$ terms of a geometric series:
+    \[
+        f(x) = \frac{x^p - 1}{x-1} \text{ for } x \neq 1.
+    \]
+    Now we make a change of variable $x = y + 1$ to get:
+    \[
+        g(y) = \frac{(y+1)^p - 1}{y}.
+    \]
+    If we show that $g(y)$ is irreducible over $\mathbb{Q}[y]$, then $f(x)$ is irreducible over $\mathbb{Q}[x]$ since $x = y+1$.
+    Using the binomial theorem:
+    \[
+        (y+1)^p - 1 = y^p + \binom{p}{1}y^{p-1} + \cdots + \binom{p}{p-1}y + 1.
+    \]
+    Therefore, we can write:
+    \[
+        g(y) = \frac{\sum_{k=0}^{p} \binom{p}{k}y^k-1}{y} = \frac{1 + py + \binom{p}{2}y^2 + \cdots + y^p - 1}{y}.
+    \]
+    Simplifying the numerator, we get:
+    \[
+        g(y) = p + \binom{p}{2}y + \binom{p}{3}y^2 + \cdots + y^{p-1}.
+    \]
+    We use Eisenstein's criterion for any prime $p$ to show that $g(y)$ is irreducible over $\mathbb{Q}[y]$.
+    \begin{itemize}
+        \item $p$ does not divide the leading coefficient, which is $1$.
+        \item $p$ divides each coefficient of $g(y)$ except for the leading coefficient.
+        \item $p^2$ does not divide the constant term, which is $p$.
+    \end{itemize}
+    All of the conditions of Eisenstein's criterion are satisfied, therefore $g(y)$ is irreducible over $\mathbb{Q}[y]$.
+    Therefore, $f(x)$ is irreducible over $\mathbb{Q}[x]$.
+\end{proof}
+
+\newpage
+\section{Problem 4}
+Factor each polynomial as a product of irreducible polynomials in $\mathbb{Q}[x]$, $\mathbb{R}[x]$, and $\mathbb{C}[x]$.
+\subsection{Solution}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|p{6cm}}
+        $p(x)$ & $\mathbb{Q}[x]$ \\
+        \hline
+        $x^4-2$ & $(x^2-\sqrt{2})(x^2+\sqrt{2})$ \\
+        $x^3+1$ & $(x+1)(x^2-x+1)$ \\
+        $x^3-x^2-5x+5$ & $(x-1)(x^2-5)$ \\
+    \end{tabular}
+    \caption{Factorization in $\mathbb{Q}[x]$}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|p{6cm}}
+        $p(x)$ & $\mathbb{R}[x]$ \\
+        \hline
+        $x^4-2$ & $(x-\sqrt[4]{2})(x+\sqrt[4]{2})(x^2+\sqrt{2})$ \\
+        $x^3+1$ & $(x+1)(x^2-x+1)$ \\
+        $x^3-x^2-5x+5$ & $(x-\sqrt{5})(x+\sqrt{5})(x-1)$ \\
+    \end{tabular}
+    \caption{Factorization in $\mathbb{R}[x]$}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|p{6cm}}
+        $p(x)$ & $\mathbb{C}[x]$ \\
+        \hline
+        $x^4-2$ & $(x-\sqrt[4]{2})(x+\sqrt[4]{2})(x-i\sqrt[4]{2})(x+i\sqrt[4]{2})$ \\
+        $x^3+1$ & $(x+1)(x-\frac{1+i\sqrt{3}}{2})(x-\frac{1-i\sqrt{3}}{2})$ \\
+        $x^3-x^2-5x+5$ & $(x-\sqrt{5})(x+\sqrt{5})(x-1)$ \\
+    \end{tabular}
+    \caption{Factorization in $\mathbb{C}[x]$}
+\end{table}
+
+\section{Problem 5}
+\subsection{Factor $x^2+x+1+i$ in $\mathbb{C}[x]$.}
+
+\begin{proof}
+    Using the quadratic formula, the roots are given by:
+    \[
+        x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+    \]
+    Therefore, we can factor $x^2+x+1+i$ as:
+    \[
+        \left(x-\frac{-1+(1-2i)}{2}\right)\left(x-\frac{-1-(1-2i)}{2}\right)
+    \]
+\end{proof}
+
+\section{Problem 6}
+\subsection{Show that a polynomial of odd degree in $\mathbb{R}[x]$ with no multiple roots must have an odd number of real roots.}
+
+\begin{proof}
+    Let $f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0$ be a polynomial of odd degree $n$ with no multiple roots.
+    We can write $f(x) = (x-r_1)(x-r_2)\cdots(x-r_n)$ where $r_1, r_2, \ldots, r_n$ are the roots of $f(x)$.
+    Since $f(x)$ has no multiple roots, all the $r_i$ are distinct. Since $f(x)$ has odd degree, at least one of the $r_i$ must be real.
+    This follows from the fact that $f(x)$ has real coefficients, the complex roots must come in conjugate pairs. Therefore, the number of real roots must be odd.
+    That is to say that if $a+bi$ is a root, then $a-bi$ is also a root. Thus, the number of complex roots is always even. If $k$ complex roots exist, they must come
+    in $\frac{k}{2}$ conjugate pairs.
+
+    Let $r$ be the number of real roots. Then the number of complex roots is $n-r$ which must be even since they come in conjugate pairs. This implies that:
+    \[
+        n - r \text{ is even.}
+    \]
+    We rewrite this as:
+    \[
+        r = n - (2k \text{ for some integer } k) = odd - even = odd.
+    \]
+    Therefore, the number of real roots must be odd.
+\end{proof}
+
+\section{Problem 7}
+Let $f(x), g(x), p(x) \in F[x]$, with $p(x)$ non-zero. Determine whether $f(x) \equiv g(x) \pmod{p(x)}$.
+\subsection{$f(x) = x^5 -2x^4 + 4x^3 + x + 1, g(x) = 3x^4 + 2x^3 - 5x^2 - 9, p(x) = x^2 + 1, F = \mathbb{Q}$}
+We reduce $f(x)$ and $g(x)$ modulo $p(x)$, which is essentially replacing $x^2$ with $-1$:
+\begin{itemize}
+    \item $x^5 = x(x^4) = x(x^2)^2 = x((-1)^2) = x$
+    \item $x^4 = x^2 \cdot x^2 = (-1)^2 = 1$
+    \item $x^3 = x \cdot x^2 = x(-1) = -x$
+    \item $x^2 = -1$
+\end{itemize}
+
+\[
+    f(x) \equiv x^5 -2x^4 + 4x^3 + x + 1 \equiv -2x - 1 \pmod{x^2 + 1}
+\]
+\[
+    g(x) \equiv 3x^4 + 2x^3 - 5x^2 - 9 \equiv -2x - 1 \pmod{x^2 + 1}
+\]
+
+Therefore we have $f(x) \equiv g(x) \pmod{x^2 + 1}$.
+
+\subsection{$f(x) = x^4 + x^2 + x + 1, g(x) = x^4 + x^3 + x^2 + 1, p(x) = x^2 + x, F = \mathbb{Z}_2$}
+We find the difference between $f(x)$ and $g(x)$:
+\[
+    f(x) - g(x) = (x^4 + x^2 + x + 1) - (x^4 + x^3 + x^2 + 1) = x^3 + x
+\]
+We reduce $x^3 + x$ modulo $x^2 + x$ to get:
+\[
+    x^3 + x \equiv x \pmod{x^2 + x}
+\]
+Subtracting $x(x^2 + x)$ from both sides, we get:
+\[
+    x^3 + x - x(x^2 + x) = x-x^2 = x^2 + x \text{ in } \mathbb{Z}_2[x]
+\]
+We see that $f(x) - g(x) \equiv 0 \pmod{x^2 + x}$, therefore $f(x) \equiv g(x) \pmod{x^2 + x}$.
+
+
+\subsection{$f(x) = x^5 -2x^4 + 4x^3 -4x^2 + 5x -1, g(x) = x^4 -3x^3 + 5x^2 -7x + 9, p(x) = x^2 + 1, F = \mathbb{Q}$}
+By performing polynomial long division, we get:
+\[
+    f(x) \equiv 2x + 1 \pmod{x^2 + 1}
+\]
+\[
+    g(x) \equiv -4x + 5 \pmod{x^2 + 1}
+\]
+By taking the difference, we get:
+\[
+    f(x) - g(x) \equiv 2x + 1 - (-4x + 5) = 6x - 4 \not\equiv 0 \pmod{x^2 + 1}
+\]
+We see that $f(x) - g(x) \not\equiv 0 \pmod{x^2 + 1}$, and therefore $f(x) \not\equiv g(x) \pmod{x^2 + 1}$.
+
+
+\section{Problem 8}
+List all the possible congruence classes in \(\mathbb{Z}_2 / (x^3 + x + 1)\).
+
+The possible congruence classes are represented by the polynomials of degree less than 3 with coefficients in \(\mathbb{Z}_2\). These are:
+
+\[
+\begin{aligned}
+    &0, \\
+    &1, \\
+    &x, \\
+    &x+1, \\
+    &x^2, \\
+    &x^2+1, \\
+    &x^2+x, \\
+    &x^2+x+1.
+\end{aligned}
+\]
+
+\section{Problem 9}
+\subsection{Prove or disprove: If $p(x)$ is irreducible in $F[x]$ and $f(x)g(x) \equiv 0_F \pmod{p(x)}$, then $f(x) \equiv 0_F \pmod{p(x)}$ or $g(x) \equiv 0_F \pmod{p(x)}$.}
+
+\begin{proof}
+The congruence relation means that $p(x) \mid f(x)g(x)$. Since $p(x)$ is irreducible, it must divide either $f(x)$ or $g(x)$. This follows from
+    the fact that $F[x]/p(x)$ is an integral domain which does not have zero divisors.
+In other words, $f(x) \equiv 0_F \pmod{p(x)}$ or $g(x) \equiv 0_F \pmod{p(x)}$.
+    In other words, $f(x) \equiv 0_F \pmod{p(x)}$ or $g(x) \equiv 0_F \pmod{p(x)}$.
+\end{proof}
+
+
+
+\section{Problem 10}
+\subsection{If $f(x)$ is relatively prime to $p(x)$, prove that there is a polynomial $g(x) \in F[x]$ such that $f(x)g(x) \equiv 1_F \pmod{p(x)}$.}
+
+\begin{proof}
+Since $f(x)$ and $p(x)$ are relatively prime, we know from Bezout's identity that there exist polynomials $a(x)$ and $b(x)$ such that $a(x)f(x) + b(x)p(x) = 1$.
+Rearranging, we get $a(x)f(x) = 1 - b(x)p(x)$. And taking the congruence of both sides modulo $p(x)$, we get $a(x)f(x) \equiv 1 \pmod{p(x)}$.
+This shows that $a(x)$ is the inverse of $f(x)$ in the quotient ring $F[x] / p(x)$.
+
+Thus, for any polynomial $f(x) \in F[x]$ that is relatively prime to $p(x)$, there exists a polynomial $g(x) \in F[x]$ such that $f(x)g(x) \equiv 1_F \pmod{p(x)}$.
+\end{proof}
+
+
+\section{Problem 11}
+Write out the addition and multiplication tables for the congruence class rings $F[x]/p(x)$. In each case, is $F[x]/p(x)$ a field?
+
+\subsection{Let $F = \mathbb{Z}_3$ and $p(x) = x^2 + 1$}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccccccc}
+        + & 0 & 1 & 2 & x & x+1 & x+2 & 2x & 2x+1 & 2x+2 \\
+        \hline
+        0 & 0 & 1 & 2 & x & x+1 & x+2 & 2x & 2x+1 & 2x+2 \\
+        1 & 1 & 2 & 0 & x+1 & x+2 & x & 2x+1 & 2x+2 & 0 \\
+        2 & 2 & 0 & 1 & x+2 & x & 2x+2 & 1 & 2x & 0 \\
+        x & x & x+1 & x+2 & 2x & 2x+1 & 2x+2 & 1 & 2 & 0 \\
+        x+1 & x+1 & x+2 & 0 & 2x+1 & 2x+2 & 0 & 1 & 2 & x \\
+        x+2 & x+2 & 0 & 1 & 2x+2 & 1 & 2x & 0 & x & 2x+1 \\
+        2x & 2x & 2x+1 & 2x+2 & 1 & 2 & 0 & x & x+1 & x+2 \\
+        2x+1 & 2x+1 & 2x+2 & 1 & 2x+1 & 0 & 1 & x+1 & x+2 & 0 \\
+        2x+2 & 2x+2 & 1 & 2x & 2x+2 & x & 1 & x+2 & 0 & x+1 \\
+    \end{tabular}
+    \caption{Addition table for \(\mathbb{Z}_3[x] / (x^2+1)\)}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccccccc}
+        $\cdot$ & 0 & 1 & 2 & x & x+1 & x+2 & 2x & 2x+1 & 2x+2 \\
+        \hline
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        1 & 0 & 1 & 2 & x & x+1 & x+2 & 2x & 2x+1 & 2x+2 \\
+        2 & 0 & 2 & 1 & x+1 & 2x+1 & 2x+2 & 0 & 2x & 2x+1 \\
+        x & 0 & x & x+1 & 2x & 1 & 2x+1 & 2x+2 & 2 & 0 \\
+        x+1 & 0 & x+1 & x+2 & 2x+1 & 2x+2 & 0 & 1 & 2 & x \\
+        x+2 & 0 & x+2 & 0 & 2x+2 & 1 & 2x & 2 & x & 2x+1 \\
+        2x & 0 & 2x & 2x+1 & 1 & 2 & 0 & x & x+1 & x+2 \\
+        2x+1 & 0 & 2x+1 & 2x+2 & 2x+1 & 0 & 1 & x+1 & x+2 & 0 \\
+        2x+2 & 0 & 2x+2 & 1 & 2x+2 & x & 2 & x+2 & 0 & x+1 \\
+    \end{tabular}
+    \caption{Multiplication table for \(\mathbb{Z}_3[x] / (x^2+1)\)}
+\end{table}
+
+We check if $x^2 + 1$ is irreducible over $\mathbb{Z}_3$.
+
+\begin{itemize}
+    \item $x=0$: $x^2 + 1 = 1 \neq 0$
+    \item $x=1$: $x^2 + 1 = 2 \neq 0$
+    \item $x=2$: $x^2 + 1 = 5 \equiv 2 \pmod{3} \neq 0$
+\end{itemize}
+Since $x^2 + 1$ has no roots in $\mathbb{Z}_3$ it is irreducible over $\mathbb{Z}_3$, and therfore
+we conclude that $\mathbb{Z}_3[x] / (x^2+1)$ is a field.
+
+
+\subsection{Let $F = \mathbb{Z}_2$ and $p(x) = x^2 + 1$}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccc}
+        + & 0 & 1 & x \\
+        \hline
+        0 & 0 & 1 & x \\
+        1 & 1 & 0 & x+1 \\
+        x & x & x+1 & 0 \\
+    \end{tabular}
+    \caption{Addition table for \(\mathbb{Z}_2[x] / (x^2+1)\)}
+\end{table}
+We check if $x^2 + 1$ is irreducible over $\mathbb{Z}_2$.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccc}
+        $\cdot$ & 0 & 1 & x \\
+        \hline
+        0 & 0 & 0 & 0 \\
+        1 & 0 & 1 & x \\
+        x & 0 & x & 1 \\
+    \end{tabular}
+    \caption{Multiplication table for \(\mathbb{Z}_2[x] / (x^2+1)\)}
+\end{table}
+
+\begin{itemize}
+    \item $x=0$: $x^2 + 1 = 1 \neq 0$
+    \item $x=1$: $x^2 + 1 = 2 \equiv 0 \pmod{2}$
+\end{itemize}
+Since $x^2 + 1$ has a root in $\mathbb{Z}_2$ it is reducible over $\mathbb{Z}_2$, and therefore
+we conclude that $\mathbb{Z}_2[x] / (x^2+1)$ is not a field.
+
+\end{document}

@@ -1,0 +1,309 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Homework 5}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\subsection*{Let $X \sim N(0,1)$ and $Y=e^X$.
+Find the probability density function of $Y$. This random
+variable $Y$ is called a log-normal random variable and is
+frequently used in mathematical modeling of asset prices.}
+Given $F_Y(y) = P(Y \leq y) = P(e^X \leq y) = P(X \leq \ln(y))$, we can take the derivative of both sides to get the probability density function of $Y$:
+\[
+    f_Y(y) = \frac{d}{dy} F_Y(y) = \frac{d}{dy} P(X \leq \ln(y)) = \frac{d}{dy} \Phi(\ln(y))
+\]
+where $\Phi$ is the CDF of the standard normal distribution.
+Taking the derivative of both sides, we get:
+\[
+    f_Y(y) = \frac{d}{dy} \Phi(\ln(y)) = \frac{1}{\sqrt{2\pi}} e^{-\frac{(\ln(y))^2}{2}} \cdot \frac{1}{y}
+\]
+Thus, the probability density function of $Y$ is:
+\[
+    f_Y(y) = \boxed{\frac{1}{\sqrt{2\pi}} e^{-\frac{(\ln(y))^2}{2}} \cdot \frac{1}{y}, \quad y > 0}
+\]
+
+
+\section*{Problem 2}
+Suppose $X$ is a discrete random variable with probability mass function
+\[
+    P(X=-1)=\frac{1}{7},
+    P(X=0)=\frac{1}{14},
+    P(X=2)=\frac{3}{14},
+    P(X=4)=\frac{4}{7}.
+\]
+\subsection*{Find the probability mass function of $(X-1)^2$.}
+We let $Y = (X-1)^2$ and calculate the values for $Y$:
+\[
+    Y(-1) = ((-1)-1)^2 = 4
+\]
+\[
+    Y(0) = (0-1)^2 = 1
+\]
+\[
+    Y(2) = (2-1)^2 = 1
+\]
+\[
+    Y(4) = (4-1)^2 = 9
+\]
+The distinct values of $Y$ are $1, 4, 9$. We can now calculate the probability mass function of $Y$:
+\[
+    P(Y=1) = P(X=0) + P(X=2) = \frac{1}{14} + \frac{3}{14} = \frac{4}{14} = \frac{2}{7}
+\]
+\[
+    P(Y=4) = P(X=-1) = \frac{1}{7}
+\]
+\[
+    P(Y=9) = P(X=4) = \frac{4}{7}
+\]
+Thus, the probability mass function of $Y$ is:
+\[
+    \boxed{P(Y=1) = \frac{2}{7}, \quad P(Y=4) = \frac{1}{7}, \quad P(Y=9) = \frac{4}{7}}
+\]
+
+\section*{Problem 3}
+\subsection*{Suppose $X$ is Exp($\lambda$). Find the
+density of $Y=ln(X)$. Find the probability density
+function of $Y$.}
+First we change the variable by expressing $X$ in terms of $Y$:
+\[
+    X = e^Y
+\]
+Since $X \geq 0$, and $X$ is a strictly positive, we know $Y$ ranges from $-\infty$ to $\infty$.
+\[
+    Y \in (-\infty, \infty)
+\]
+The CDF of $Y$ is:
+\[
+    F_Y(y) = P(Y \leq y) = P(ln(X) \leq y) = P(X \leq e^y)
+\]
+Using the CDF of $X$, we get:
+\[
+    P(X \leq e^y) = \int_{0}^{e^y} \lambda e^{-\lambda x} dx = 1 - e^{-\lambda e^y}
+\]
+Applying the chain rule, we get:
+\[
+    f_Y(y) = \lambda e^{-\lambda e^y} \cdot e^y = \lambda e^{y-\lambda e^y}
+\]
+Thus, the probability density function of $Y$ is:
+\[
+    f_Y(y) = \boxed{\lambda e^{y-\lambda e^y}, \quad y \in (-\infty, \infty)}
+\]
+
+
+\section*{Problem 4}
+\subsection*{Let $X \sim Bin(10,\frac{1}{3})$, 
+$Y \sim Exp(3)$. Assume that these are independent.
+Use Chebyshev's Inequality to bound $P(X-Y<-1)$}
+We know that the expected value of $X$ is:
+\[
+    \mathbb{E}[X] = 10 \cdot \frac{1}{3} = \frac{10}{3}
+\]
+And the variance of $X$ is:
+\[
+    Var(X) = 10 \cdot \frac{1}{3} \cdot \frac{2}{3} = \frac{20}{9}
+\]
+We also know that the expected value of $Y$ is:
+\[
+    \mathbb{E}[Y] = \frac{1}{3}
+\]
+And the variance of $Y$ is:
+\[
+    Var(Y) = \frac{1}{9}
+\]
+If we let $Z = X-Y$, we know that the expected value of $Z$ is:
+\[
+    \mathbb{E}[Z] = \mathbb{E}[X] - \mathbb{E}[Y] = \frac{10}{3} - \frac{1}{3} = 3
+\]
+And the variance of $Z$ is:
+\[
+    Var(Z) = Var(X) + Var(Y) = \frac{20}{9} + \frac{1}{9} = \frac{21}{9} = \frac{7}{3}
+\]
+Using Chebyshev's Inequality, we get:
+\[
+    P(|Z - \mathbb{E}[Z]| \geq t) \leq \frac{Var(Z)}{t^2}
+\]
+We rearrange the inequality for bound $P(Z < -1)$:
+\[
+    P(Z < -1) \leq P(|Z - 3| < -4) = P(|Z-3| \geq 4)
+\]
+\[
+    P(|Z-3| \geq 4) \leq \frac{Var(Z)}{4^2} = \frac{7}{48}
+\]
+Thus, we have:
+\[
+    \boxed{P(X-Y<-1) \leq \frac{7}{48}}
+\]
+
+\section*{Problem 5}
+\subsection*{Let $X\sim$ Poisson($\mu$). Compute $E[\frac{1}{1+X}]$}
+Given that $X$ is a discrete random variable, we can express $E[\frac{1}{1+X}]$ as:
+\[
+    E[\frac{1}{1+X}] = \sum_{x=0}^{\infty} \frac{1}{1+x} P(X=x)
+\]
+The probability mass function of $X$ is:
+\[
+    P(X=x) = \frac{\mu^x e^{-\mu}}{x!}
+\]
+Thus, we have:
+\[
+    E[\frac{1}{1+X}] = \sum_{x=0}^{\infty} \frac{1}{1+x} \frac{\mu^x e^{-\mu}}{x!}
+\]
+We can now use the fact that:
+\[
+    \frac{1}{1+x} = \int_{0}^{1} t^x dt
+\]
+And:
+\[
+    \int_{0}^{1} \sum_{x=0}^{\infty} \frac{(t\mu)^x}{x!} dt
+\]
+Finally we recognize that the summation is the Taylor series expansion of $e^{\mu t}$:
+\[
+    \sum_{x=0}^{\infty} \frac{(\mu t)^x}{x!} = e^{\mu t}
+\]
+Thus, we have:
+\[
+    E[\frac{1}{1+X}] = \int_{0}^{1} e^{\mu t} dt = \frac{e^{\mu} - 1}{\mu}
+\]
+After integrating, we get:
+\[
+    E[\frac{1}{1+X}] = \boxed{\frac{1-e^{-\mu}}{\mu}}
+\]
+
+
+\section*{Problem 6}
+\subsection*{Suppose that you own a store that sells a particular
+brand of stove for \$1000. You purchase the stoves from a distributor for \$800 each. You
+believe that each stove has a lifetime that is an exponential random variable with rate
+parameter $\lambda = \frac{1}{10}$, where the unit of time is in years. You would like to offer the following
+extended warranty on this stove: if the stove breaks within $r$ years, you will replace the
+stove completely (at a cost of \$800 to you). If the stove lasts longer than $r$ years, the
+extended warranty is void. Let $C$ be the cost you charge a customer for this extended
+warranty. Given $r$, what value of $C$ will help you break even, that is, you will make zero
+profit from the warranty itself? What do you think is a reasonable choice of $r$?}
+For a 5 year warranty, we have:
+\[
+    C = 800 \cdot (1 - P(X \leq 5)) = 800 \cdot (1 - e^{-\frac{5}{10}}) = 800 \cdot (1 - e^{-\frac{1}{2}})
+\]
+\[
+    C = 800 \cdot (1 - e^{-\frac{1}{2}}) \approx 800 \cdot (1 - 0.6065) = 800 \cdot 0.3935 \approx 314.8
+\]
+Meaning that you should charge \$314.8 for a 5 year warranty, $(r=5)$, to break even.
+
+
+
+\section*{Problem 7}
+\subsection*{You flip a fair coin 10, 000 times. Estimate the
+probability that the difference between the number of heads and the number of tails
+is at most 100.}
+Let $X$ be the number of heads and $Y$ be the number of tails. We know that:
+\[
+    X = H - T = 2H - 10000
+\]
+\[
+    H = \frac{X + 10000}{2}
+\]
+Given that $H \sim Bin(10000, 0.5)$, we know from the Central Limit Theorem that:
+\[
+    H \sim N(5000, 10000 \cdot 0.5 \cdot 0.5) = N(5000, 2500)
+\]
+Therefore, we have:
+\[
+    X = 2H - 10000 \sim N(0, 4 \cdot 2500) = N(0, 10000)
+\]
+We want to find $P(|X| \leq 100)$.
+We standardize $X$ to get:
+\[
+    P(|X| \leq 100) = P(|\frac{X-0}{100}| \leq 1) = P(|Z| \leq 1)
+\]
+Using the standard normal distribution, we get:
+\[
+    P(|Z| \leq 1) = 0.6826
+\]
+Thus, we have:
+\[
+    P(|X| \leq 100) = \boxed{0.6826}
+\]
+
+\section*{Problem 8}
+Each day John performs the following experiment. He flips a fair coin repeatedly until he sees a T and counts the number of coin flips needed.
+\subsection*{Approximate the probability that in a year there are at least 3 days when he needed more than 10 coin flips. Argue why this approximation is appropriate.}
+The probability that there are at least 3 days in a year when John needs more than 10 coin flips is approximately $\boxed{0.039 \text{ , or } 3.9\%}$.
+This is reasonable because the binomial distribution has a small probability and the number of coin flips is 365 which is large enough for Poisson approximation.
+
+\subsection*{Approximate the probability that in a year there are more than 50 days when he
+needed exactly 3 coin flips. Argue why this approximation is appropriate.}
+The probability that in a year there are more than 50 days when John needs exactly 3 coin flips is approximately $\boxed{0.257 \text{ , or } 25.7\%}$.
+Normal approximation is a reasonable approximation because the number of days is large and the probability is small and the mean is large.
+
+
+
+\section*{Problem 9}
+\subsection*{In a call center the number of received calls in a day
+can be modeled by a Poisson random variable. We know that, on average, 0.5\% of days
+the call center received no calls at all. What is the average number of calls per day?}
+Let $X$ be the number of calls per day. We know that:
+\[
+    P(X=0) = e^{-\lambda} = 0.005
+\]
+Solving for $\lambda$, we get:
+\[
+    \lambda = -\ln(0.005)
+\]
+Thus, the average number of calls per day is:
+\[
+    \lambda = \boxed{5.298}
+\]
+
+\section*{Problem 10}
+Peter and Mary take turns throwing one dart at
+the dartboard. Peter hits the bulls eye with probability $p$ and Mary hits the bullseye
+with probability $r$. Whoever hits the bullseye first wins. Suppose Peter throws the first
+dart.
+\subsection*{Probability Mary wins the game}
+\[
+    \boxed{P_{\textit{Mary Wins}} = \frac{(1-p)r}{p+r-pr}}
+\]
+\subsection*{Let $X$ be the number of times that Mary throws a dart in the game, until somebody wins. Find the probability mass function of $X$. Is this a familiar named
+distribution?}
+$X$ is a geometric random variable with parameter $r$.
+The probability mass function of $X$ is:
+\[
+    \boxed{P(X=x) = (1-r)^{x-1}r}
+\]
+
+\subsection*{Find the conditional probability $P (X = k | \text{Mary wins})$, for all possible values of
+$k$. As a function of $k$, is this a familiar named distribution?}
+This is a shifted geometric random variable with parameter $r$.
+The probability mass function of $X$ is:
+\[
+    \boxed{P(X=k|\text{Mary wins}) = ((1-p)(1-r))^{k-1}\cdot \frac{p+r-pr}{1-p}}
+\]
+\end{document}

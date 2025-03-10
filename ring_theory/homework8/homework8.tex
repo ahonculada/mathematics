@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Homework 8}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\subsection*{If $F$ is a field, $R$ is a nonzero ring, and $f: F \to R$ a surjective homomorphism, 
+prove that $f$ is an isomorphism.}
+\begin{proof}
+    Let $f: F \to R$ be a surjective homomorphism. Then for any $r \in R$, there exists $a \in F$ such that $f(a) = r$.
+    We now show that $f$ is injective. Given that $F$ is a field, then its only ideals are $\{0\}$ and $F$ itself.
+    The kernel of $f$ is 
+
+\end{proof}
+
+\section*{Problem 2}
+
+\section*{Problem 3}
+
+\section*{Problem 4}
+
+\section*{Problem 5}
+
+\section*{Problem 6}
+\subsection*{Is $\mathbb{Z}_3 \times \mathbb{Z}_{12}$ isomorphic to $\mathbb{Z}_3 \times \mathbb{Z}_{20}$?}
+
+\subsection*{Is $\mathbb{Z}_4 \times \mathbb{Z}_{35}$ isomorphic to $\mathbb{Z}_5 \times \mathbb{Z}_{28}$?}
+
+\section*{Problem 7}
+
+\section*{Problem 8}
+
+\section*{Problem 9}
+
+\section*{Problem 10}
+
+\section*{Problem 11}
+\subsection*{Use norms to explain why in $\mathbb{Z}[i] \text{, } 2+5i$ is not a factor of
+$1+6i$.}
+
+\subsection*{Use norms to explain why in $\mathbb{Z}[i] \text{, } 1+2i$ is not a factor of
+$7+3i$.}
+
+
+
+\end{document}
