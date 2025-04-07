@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Homework 1}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\noindent\textit{Determine which of the following are groups.}\\
+\noindent\text{(a)} The set of integers $\mathbb{Z}$ under the operation $x \star y = x + y + 1$.
+
+We check the group axioms:
+\begin{itemize}
+    \item \textbf{Closure:} Let $x,y \in \mathbb{Z}$. Then $x \star y = x + y + 1 \in \mathbb{Z}$.
+    \item \textbf{Associativity:} Let $x,y,z \in \mathbb{Z}$. Then $(x \star y) \star z = (x + y + 1) \star z = (x + y + 1) + z + 1 = 
+        x + (y + z + 1) + 1 = x \star (y + z + 1) = x \star (y \star z)$.
+    \item \textbf{Identity:} Let $x \in \mathbb{Z}$ and $e = -1$. Then $x \star e = x + -1 + 1 = x + 0 = x$. Similarly,
+    $e \star x = -1 + x + 1 = x$.
+    \item \textbf{Inverse:} Let $x \in \mathbb{Z}$ and $y = -x-2$. Then $x \star y = x + y + 1 = x + (-x-2) + 1 = -1 = e$.
+        Similarly, $y \star x = -1 = e$.
+\end{itemize}
+Therefore, $\mathbb{Z}$ under the operation $x \star y = x + y + 1$ is a group.
+\\
+
+\noindent\text{(b)} The set of natural numbers $\mathbb{N}$ under the operation $x \star y = \text{max}(x,y)$.
+
+First we identify the identity element. Let $e = 1$. Then $x \star e = \text{max}(x,1) = x$ for all $x \in \mathbb{N}$.
+Similarly, $e \star x = x$.
+However we see that for any element in the natural numbers, there is no inverse element $y \in \mathbb{N}$ such that $x \star y = e$.
+Therefore, $\mathbb{N}$ under the operation $x \star y = \text{max}(x,y)$ is not a group.
+\\
+
+\noindent\text{(c)} The set of rational numbers $\mathbb{Q}$ under the operation $x \star y = xy + x + y$.
+
+We show this operation is not associative. 
+\begin{align*}
+    (x \star y) \star z = (xy + x + y) \star z = (xy + x + y)z + (xy + x + y) + z = xyz + xz + yz + x + y + z
+\end{align*}
+\begin{align*}
+    x \star (y \star z) = x \star (yz + y + z) = x(yz + y + z) + x + (yz + y + z) = xyz + xy + xz + x + y + z
+\end{align*}
+
+We see that $(x \star y) \star z \neq x \star (y \star z)$ for all $x,y,z \in \mathbb{Q}$.
+Therefore, $\mathbb{Q}$ under the operation $x \star y = xy + x + y$ is not a group.
+\\
+
+
+\section*{Problem 2}
+\noindent\textit{Fix a positive integer $n\geq 3$, and let $\omega = e^{2\pi i / n}$.
+Define functions $r_a, s_a : \mathbb{C} \to \mathbb{C}$ for $a = 0,\ldots,n-1$
+by 
+\begin{align*}
+    r_a(z) = \omega^a z, \quad s_a(z) = \omega^a\overline{z},
+\end{align*}
+where $\overline{z}$ is the complex conjugate of $z$.}
+
+\noindent\text{(a)} Show that $\{r_0,\ldots,r_{n-1},s_0,\ldots,s_{n-1}\}$ forms a group under composition.
+
+\noindent\text{(b)} Explain why this group is isomorphic to the dihedral group
+$D_n$, the group of symmetries of a regular $n$-gon.
+
+
+\section*{Problem 3}
+\noindent\textit{Suppose $G$ is a group in which every element $x\in
+G$ satisfies $x^2 = e$. Show that $G$ is abelian.}
+
+Given that $G$ is a group and every element $x \in G$ satisfies $x^2 = e$, we have that
+for all $a,b \in G$ we know $ab \in G$ and every element $a$ is its own inverse $a^{-1} = a$. Thus we have that
+\begin{align*}
+    (ab)^2 = e \implies abab = e \implies ab = (ab)^{-1} = b^{-1}a^{-1} = ba
+\end{align*}
+Therefore $ab = ba$ and $G$ is abelian.
+
+\section*{Problem 4}
+\noindent\textit{Let $G$ be a finite group with an even number of elements.
+Show that $G$ has an element of order 2.}
+
+In $G$ we know that the identity element $e$ has order 1. Given the order of $G$ is even, we can call the
+order of $G$ to be $2n$ for some $n \in \mathbb{N}$. Without the identity element, we have $2n-1$ elements left.
+We know that every element in $G$ has a unique inverse. Thus we can pair each element $a \in G$ with $a^{-1}$.
+At most we can pair $2n-2$ elements. We call the only unpaired element $b$. Since $b$ is unpaired,
+we conclude it is its own inverse $b = b^{-1}$. Thus $b^2 = e$ and $b$ has order 2. If less than $2n-2$ elements 
+can be paired, then the remaining elements must be paired with themselves. Thus they are their own inverses and have order 2.
+
+\section*{Problem 5}
+\noindent\textit{Let $G$ be a nonempty set closed under an associative operation $\star$.
+Suppose that for all $x,y,x \in G$, if $x \star z = y \text{ or } z\star x = z \star y$, then $x = y$.}
+
+\noindent\text{(a)} Prove that if $G$ is finite, then it is a group.
+
+\noindent\text{(b)} If $G$ is infinite, must it be a group?
+
+\end{document}

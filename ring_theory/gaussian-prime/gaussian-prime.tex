@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Gaussian Primes}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+\section{Definition}
+
+\begin{definition}
+    A Gaussian prime is an irreducible element of $\mathbb{Z}[i]$.
+    Otherwise stated, it is only divisible by units, $\{\pm 1, \pm i\}$ and associates.
+\end{definition}
+
+\section{Applications}
+We can use Gaussian Integers to characterize the prime numbers. We know a prime $p$ can
+only be congruent to $1 \pmod{4}$ or $3 \pmod{4}$. Also recall Fermat's theorem 
+on the sum of two squares, which states that a prime $p$ can be expressed as a sum of two squares
+if and only if $p = 2$ or $p \equiv 1 \pmod{4}$.
+
+\begin{theorem}
+    A prime number $p$ is a Gaussian prime if and only if $p \equiv 3 \pmod{4}$.
+\end{theorem}
+\begin{proof}
+    ($\Rightarrow$)
+    For the sake of contradiction, assume $p \equiv 3 \pmod{4}$ is not a Gaussian prime.
+    Then, $p$ can be factored into two non-unit Gaussian integers.
+    \begin{align*}
+        p &= (a + bi)(c + di)
+    \end{align*}
+    However when we take the norm of both sides, we get
+    \[
+        N(p) = N(a + bi)N(c + di)
+    \]
+    \[
+        p^2 = N(a + bi)N(c + di)
+    \]
+    Since $p$ is a prime number in $\mathbb{Z}$, this implies that one of the norm, say $N(a + bi)$, is either $1$ or $p$.
+    If $N(a + bi) = 1$, then $a + bi$ is a unit, which does not lead to a factorization.
+    If $N(a + bi) = p$, then $p$ can be expressed as a sum of two squares, $a^2 + b^2 = p$.
+    Now we show that $p \equiv 3 \pmod{4}$ is not a sum of two squares.
+    By Fermat's theorem on the sum of two squares, a prime $p$ can be expressed as a sum of two squares if and only if $p = 2$ or $p \equiv 1 \pmod{4}$.
+    Since we assumed $p \equiv 3 \pmod{4}$, it is not a sum of two squares.
+    This contradicts the assumption that $p$ factors in $\mathbb{Z}[i]$.
+    Therefore, $p$ is irreducible in $\mathbb{Z}[i]$, and must be a Gaussian prime.
+
+    ($\Leftarrow$)
+    For the sake of contradiction, assume $p \equiv 1 \pmod{4}$.
+    By Fermat's theorem on the sum of two squares, $p$ can be expressed as a sum of two squares.
+    \begin{align*}
+        p &= a^2 + b^2
+    \end{align*}
+    This allows us to factor $p$ in $\mathbb{Z}[i]$ as
+    \begin{align*}
+        p &= (a + bi)(a - bi)
+    \end{align*}
+    Since neither $a + bi$ nor $a - bi$ is a unit, this is a nontrivial
+    factorization of $p$ in $\mathbb{Z}[i]$, meaning $p$ is not a Gaussian prime.
+    We have shown that a prime $p \equiv 1 \pmod{4}$ always factors in $\mathbb{Z}[i]$, meaning it is not a Gaussian prime.
+    Therefore the only primes that are Gaussian primes are those that are $3 \pmod{4}$.
+\end{proof}
+
+\begin{corollary}
+    If $p \equiv 1 \pmod{4}$, then $p$ is the norm of a Gaussian prime.
+\end{corollary}
+\begin{proof}
+    By Fermat's theorem on the sum of two squares, $p$ can be expressed as a sum of two squares.
+    \begin{align*}
+        p &= a^2 + b^2
+    \end{align*}
+    This allows us to factor $p$ in $\mathbb{Z}[i]$ as
+    \begin{align*}
+        p &= (a + bi)(a - bi)
+    \end{align*}
+    This means that $p$ is not a prime since it factors non-trivially in $\mathbb{Z}[i]$.
+    Since $N(a + bi) = p$, $a + bi$ is a Gaussian prime, as integers
+    norm is a prime number in $\mathbb{Z}$.
+
+\end{proof}
+
+
+\begin{example}
+    $2$ is not a Gaussian prime because $2 = (1 + i)(1 - i)$.
+    However we can express $2$ as the norm of the Gaussian prime $1 + i$.
+    \[
+        N(1 + i) = N(1) + N(i) = 1^2 + 1^2 = 2
+    \]
+\end{example}
+
+We have thus characterized all the primes in $\mathbb{Z}$ as either Gaussian primes or the norms of Gaussian primes.
+
+
+\end{document}
