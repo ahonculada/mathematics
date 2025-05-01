@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+\usepackage{enumitem}
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Homework 2}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\noindent\textit{Prove that a nontrivial group $G$ has no trivial proper subgroups if and only if
+it is cyclic of order $p$ for some prime $p$.}
+
+\begin{proof}
+    ($\Rightarrow$)
+    Let $G$ be a group with no trivial proper subgroups. Let $g \in G$ be a non-identity element.
+    $\langle g \rangle$ generates a cyclic subgroup of $G$. If $|\langle g \rangle| < |G|$, then
+    form a nontrivial, proper cyclic subgroup of $G$. This contradicts the assumption that $G$ has no
+    nontrivial, proper subgroups. Therefore, $|\langle g \rangle| = |G|$. Also if $|G|$ is a 
+    composite number, then there exists an integer $k$ such that $g^k$ forms a nontrivial, proper
+    cyclic subgroup of $G$. This contradicts the assumption that $G$ has no nontrivial, proper subgroups therefore
+    $|G|$ must be prime. Furthermore, $|\langle g \rangle|$ cannot be infinite because then this cyclic subgroup
+    would be isomorphic to $\mathbb{Z}$ and thus $G$ would have proper subgroups.
+
+    ($\Leftarrow$)
+    Let $G$ be a cyclic group of order $p$ for some prime $p$. Then $G$ is isomorphic to $\mathbb{Z}_p$.
+    This group has finite order and for element $a \in G$, $\langle a \rangle = \{e, a, 2a, \ldots, (p-1)a\}$
+    where all elements are distinct and $|\langle a \rangle| = p$. Since p is prime every non-identity element has order p
+    and generates the entire group.
+    We conclude that there are no proper nontrivial subgroups of $\mathbb{Z}_p$.
+    
+\end{proof}
+
+\section*{Problem 2}
+\noindent\textit{For which pairs of positive integers $(m,n)$ is $\mathbb{Z}_m \times \mathbb{Z}_n$ cyclic?}
+
+\begin{proof}
+    We show that $\mathbb{Z}_m \times \mathbb{Z}_n$ is cyclic if and only if $\gcd(m,n) = 1$. 
+    We know that $|\mathbb{Z}_m| = m$ and $|\mathbb{Z}_n| = n$.
+    We also know that $|\mathbb{Z}_m \times \mathbb{Z}_n| = mn$.
+
+    ($\Rightarrow$)
+    Suppose that $\mathbb{Z}_m \times \mathbb{Z}_n$ is cyclic. Then there exists an element $(a,b) \in \mathbb{Z}_m \times \mathbb{Z}_n$
+    such that $\langle (a,b) \rangle = \mathbb{Z}_m \times \mathbb{Z}_n$. Element $(a,b)$ must be raised to some power $mn$, the order,
+    of the group, to generate all elements of $\mathbb{Z}_m \times \mathbb{Z}_n$. The order of $(a,b)$ must be the least common multiple of $ord(a)$ and $ord(b)$ = $\frac{ord(a)ord(b)}{\gcd(ord(a),ord(b))}$.
+    For the $lcm(ord(a),ord(b)) = mn$, $\gcd(m,n)$ must be 1.
+
+    ($\Leftarrow$)
+    Suppose that $\gcd(m,n) = 1$. Then there exists integers $a,b$ such that $am + bn = 1$.
+    We can use this to generate an element $(a,b) \in \mathbb{Z}_m \times \mathbb{Z}_n$.
+    We claim that $\langle (a,b) \rangle = \mathbb{Z}_m \times \mathbb{Z}_n$ is cyclic and generates all elements of $\mathbb{Z}_m \times \mathbb{Z}_n$.
+    We know that $(a,b)$ has order $mn$ because $mn$ is the least common multiple of $ord(a)$ and $ord(b)$.
+    Since $|\mathbb{Z}_m \times \mathbb{Z}_n| = mn$, $(a,b)$ generates all elements of $\mathbb{Z}_m \times \mathbb{Z}_n$.
+    Therefore, $\mathbb{Z}_m \times \mathbb{Z}_n$ is cyclic.
+
+\end{proof}
+
+\section*{Problem 3}
+\noindent\text{(a)} Show that every subgroup of $\mathbb{Q}$ that can be generated
+by a finite set is cyclic.
+
+\begin{proof}
+
+    Let $H$ be a finite set generating a subgroup of $\mathbb{Q}$ where
+
+    $H = \{ \frac{p_1}{q_1}, \frac{p_2}{q_2} \ldots, \frac{p_n}{q_n} \}$ and $p_i,q_i \in \mathbb{Z}$.
+
+    If there is only one element, then $\langle H \rangle$ is cyclic.
+    If there are multiple elements in $H$, then there exists a least common multiple of the denominators of the elements in $H$.
+    We call this least common multiple $d$.
+
+Thus $\langle H \rangle$ is isomorphic to $\langle \frac{1}{d} \rangle$ because
+every linear combination of the elements in $H$ is a multiple of $\frac{1}{d}$.
+Therefore, $H$ is cyclic.
+\end{proof}
+
+
+\noindent\text{(b)} Exhibit a proper subgroup of $\mathbb{Q}$ that is not cyclic.
+
+We describe a group of infinite order that generates a proper subgroup of $\mathbb{Q}$.
+
+Let $S = \{(\frac{a}{2^k}) | a,k \in \mathbb{Z}\}$.
+
+We claim that $\langle S \rangle$ is a proper subgroup of $\mathbb{Q}$.
+Given that $\mathbb{Q}$ is a group under addition, we check if $G$ is closed under addition and 
+taking inverses.
+
+For any $x,y \in S$, we can write $x = (\frac{a}{2^k})$ and $y = (\frac{b}{2^l})$ for some $a,b,k,l \in \mathbb{Z}$.
+
+$x + y = (\frac{a}{2^k}) + (\frac{b}{2^l}) = (\frac{a+b}{2^{max(k,l)}})$ is in $S$ because $a+b \in \mathbb{Z}$ and $max(k,l) \in \mathbb{Z}$.
+
+For any $x$ in $S$, we can write $x = (\frac{a}{2^k})$ for some $a,k \in \mathbb{Z}$ and
+$x^{-1} = -(\frac{a}{2^k})$ which is in $S$ because $-a \in \mathbb{Z}$ and $k \in \mathbb{Z}$.
+
+Therefore, $S$ is a group under addition.
+
+Finally we check that $\langle S \rangle$ is a proper subgroup of $\mathbb{Q}$.
+There exists an element $\frac{1}{3} \in \mathbb{Q}$ that is not in $\langle S \rangle$ because
+$\frac{1}{3}$ cannot be written as a linear combination of elements in $S$.
+
+Therefore, $\langle S \rangle$ is a proper subgroup of $\mathbb{Q}$.
+
+
+\section*{Problem 4}
+\noindent\textit{Which of the following are group homomorphisms? For each describe its kernel.}
+
+\noindent\text{(a)} $\varphi : \mathbb{R}^* \to \mathbb{Z}_2$, where $\varphi(x) = 
+\begin{cases} 
+0, & \text{if } x > 0 \\ 
+1, & \text{if } x < 0 
+\end{cases}$
+
+Let $p$ be a positive real number and $n$ be a negative real number. 
+
+$\varphi$ is a homomorphism because $\varphi(p) = 0$ and $\varphi(n) = 1$ 
+
+and $\varphi(pn)= 1 = 0 + 1 = \varphi(p) \varphi(n)$,
+$\varphi(pp) = \varphi(p) = 0 = 0 + 0 = \varphi(p)\varphi(p)$ 
+
+and $\varphi(nn) = \varphi(p) = 0 \equiv 1 + 1 \pmod{2} = \varphi(n)\varphi(n)$.
+
+The kernel of $\varphi$ is the set of all positive real numbers.
+
+\noindent\text{(b)} $\varphi : \mathbb{U}_n \to \mathbb{Z}_n$, for $n > 1$, where $\varphi(m) = n$ 
+
+The kernel of $\varphi$ is the set of all elements of $\mathbb{U}_n$ that are relatively
+
+prime to $n$. Therefore, 0 is not in Im $\varphi$ and $\varphi$ is not a homomorphism 
+
+because 0 is the identity element of $\mathbb{Z}_n$.
+
+\noindent\text{(c)} $\varphi : GL(n, \mathbb{R}) \to \mathbb{R}^*$, where $\varphi(A) = \det(A)$
+
+We know from linear algebra that determinant is a multiplicative function
+
+and $\det(AB) = \det(A)\det(B)$. Therefore, $\varphi$ is a homomorphism.
+
+The kernel of $\varphi$ is the set of all invertible $n \times n$ matrices with 
+
+determinant 1, also known as the special linear group $SL(n, \mathbb{R})$.
+
+\noindent\text{(d)} $\varphi : \mathbb{C}^* \to \mathbb{R}^*$, where $\varphi(z) = \mathfrak{R}(z)$
+
+We let $z = a + bi$ and $w = c + di$ where $a,b,c,d \in \mathbb{R}$.
+
+$\varphi(z) = a$ and $\varphi(w) = c$.
+
+$\varphi(zw) = \varphi((a+bi)(c+di)) = \varphi(ac-bd + (ad+bc)i) = ac-bd$.
+
+However, $\varphi(z)\varphi(w) = ac-bd + (ad+bc)i = a+c$
+$a+c \neq ac-bd$ 
+
+and thus $\varphi$ is not a homomorphism.
+
+\noindent\text{(e)} $\varphi : S_3 \to S_3$, where $\varphi(x) = x^{-1}$
+
+$\varphi$ is not a homomorphism because $\varphi(xy) = (xy)^{-1} = y^{-1}x^{-1} = \varphi(y)\varphi(x)$.
+
+We know that $S_3$ is not abelian thus $\varphi$ is not a homomorphism because 
+
+$\varphi(xy) \neq \varphi(x)\varphi(y)$.
+
+\section*{Problem 5}    
+\noindent\text{(a)} Prove that the set of automorphisms of a group $G$ is itself a group
+under composition (called the $\textit{automorphism group}$ of $G$).
+
+\begin{proof}
+    Let $\phi, \psi \in Aut(G)$.
+    We check the group axioms to show that $Aut(G)$ is a group under composition.
+    \begin{enumerate}[label=\roman*.]
+        \item \textbf{Closure:} $\phi \circ \psi \in Aut(G)$ because $\phi$ and $\psi$ are automorphisms.
+            $\phi \circ \psi$ is in $Aut(G)$ because it is a homomorphism and a bijection.
+
+        \item \textbf{Associativity:} $(\phi \circ \psi) \circ \chi = \phi \circ (\psi \circ \chi)$ because composition of functions is associative.
+        \item \textbf{Identity:} The identity automorphism $id_G$ is in $Aut(G)$ because it is an automorphism.
+        \item \textbf{Inverses:} $\phi^{-1} \in Aut(G)$ because $\phi$ is an automorphism.
+    \end{enumerate}
+
+    
+
+\end{proof}
+
+\noindent\text{(b)} For each of the following groups, describe all of its automorphisms, and
+give the name of a group isomorphic to each automorphism group.
+
+\begin{enumerate}[label=\roman*.]
+    \item $\mathbb{Z}$
+
+    Automorphism group of $\mathbb{Z}$: $\{\pm 1\}$ which represent the identity and the reflection automorphisms.
+
+    $Aut(\mathbb{Z}) \cong \mathbb{Z}_2$
+    \item The Klein 4-group $(\mathbb{Z}_2 \times \mathbb{Z}_2)$
+
+    Automorphism group of $\mathbb{Z}_2 \times \mathbb{Z}_2$ is the set of permutations
+        of the 3 non-identity elements.
+
+    $Aut(\mathbb{Z}_2 \times \mathbb{Z}_2) \cong S_3$
+
+    \item $\mathbb{Z}_n$
+
+    Automorphism group of $\mathbb{Z}_n$ is the set of all cyclic shifts of $n$ elements.
+
+    $Aut(\mathbb{Z}_n) \cong \mathbb{Z}_n$
+\end{enumerate}
+
+
+\end{document}

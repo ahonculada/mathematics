@@ -1,0 +1,368 @@
+\documentclass[11pt]{article}
+\usepackage{varwidth}
+\usepackage{manfnt}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[scaled]{beramono}
+\usepackage{fullpage}
+\usepackage[dvips]{graphicx} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{multicol}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{mathabx}
+\usepackage{xparse}
+\usepackage[scaled]{beramono}
+\usepackage{ragged2e}
+\usepackage{mdframed}
+\usepackage{derivative}
+\usepackage{xcolor}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{minted}
+
+\usetikzlibrary{arrows}
+
+
+\renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\ngroup}[1]{\left(#1 \right)}
+\newcommand{\sgroup}[1]{\left[#1 \right]}
+\newcommand{\cgroup}[1]{\left\{#1 \right\}}
+\newcommand{\agroup}[1]{\left\langle #1 \right\rangle}
+
+
+\newcommand{\bbN}{\mathbb{N}}
+
+\newcommand{\set}[1]{\mathcal{#1}}
+\newcommand{\setrange}[2]{\{#1, \ldots, #2\}}
+
+\newcommand{\Prob}[1]{\Pr\left[#1 \right]}
+\newcommand{\CondProb}[2]{ \Prob{#1 \,\big|\, #2}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bQ}{\mathbf{Q}} 
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bT}{\mathbf{T}}
+\newcommand{\bU}{\mathbf{U}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\bW}{\mathbf{W}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+\newcommand{\Unif}{\mathrm{Unif}}
+
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfb}{\mathbf{b}}
+\newcommand{\bfc}{\mathbf{c}}
+\newcommand{\bfd}{\mathbf{d}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bff}{\mathbf{f}}
+\newcommand{\bfg}{\mathbf{g}}
+\newcommand{\bfh}{\mathbf{h}}
+\newcommand{\bfi}{\mathbf{i}}
+\newcommand{\bfj}{\mathbf{j}}
+\newcommand{\bfk}{\mathbf{k}}
+\newcommand{\bfl}{\mathbf{l}}
+\newcommand{\bfm}{\mathbf{m}}
+\newcommand{\bfn}{\mathbf{n}}
+\newcommand{\bfo}{\mathbf{o}}
+\newcommand{\bfp}{\mathbf{p}}
+\newcommand{\bfq}{\mathbf{q}}
+\newcommand{\bfr}{\mathbf{r}}
+\newcommand{\bfs}{\mathbf{s}}
+\newcommand{\bft}{\mathbf{t}}
+\newcommand{\bfu}{\mathbf{u}}
+\newcommand{\bfv}{\mathbf{v}}
+\newcommand{\bfw}{\mathbf{w}}
+\newcommand{\bfx}{\mathbf{x}}
+\newcommand{\bfy}{\mathbf{y}}
+\newcommand{\bfz}{\mathbf{z}}
+\newcommand{\expect}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\Var}[1]{\mathrm{Var}\left(#1\right)}
+\newcommand{\Exp}[1]{\expect{#1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathrm{Var}}
+
+\newcommand{\bin}[1]{\ensuremath{\{0,1\}^{#1}}}
+\newcommand{\rsample}{\stackrel{\mbox{\tiny $\$$}}{\leftarrow}}
+\newcommand{\setd}[2]{\left\{ #1 \,:\, #2 \right\}}
+
+
+\renewcommand{\labelitemi}{-}
+\newcommand{\bits}{\{0,1\}}
+
+\renewcommand{\Pr}{\mathbb{P}}
+\renewcommand{\P}[1]{\Prob{#1}}
+
+\newcommand{\bbR}{\mathbb{R}}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{proposition}[thm]{Proposition}
+\newtheorem*{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\newcommand{\Adv}{\mathrm{Adv}}
+
+
+\newcommand{\IBE}{\mathsf{IBE}}
+\newcommand{\Extract}{\mathsf{Extract}}
+\newcommand{\pp}{\mathsf{pp}}
+\newcommand{\msk}{\mathsf{msk}}
+\newcommand{\ID}{\mathrm{ID}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\IDspace}{\ensuremath{\mathcal{ID}}}
+
+\newcommand{\IBEEnc}{\mathsf{IBEEnc}}
+\newcommand{\IBEGen}{\mathsf{IBEGen}}
+\newcommand{\IBEDec}{\mathsf{IBEDec}}
+\newcommand{\IBEExtract}{\mathsf{IBEExtract}}
+\renewcommand{\SS}{\ensuremath{\mathsf{SS}}}
+
+
+\newcommand{\PKE}{\mathsf{PKE}}
+\newcommand{\Gen}{\mathsf{Gen}}
+\newcommand{\Enc}{\mathsf{Enc}}
+\newcommand{\Dec}{\mathsf{Dec}}
+\newcommand{\pk}{\mathsf{pk}}
+\newcommand{\sk}{\mathsf{sk}}
+\newcommand{\getsr}{\rsample}
+\newcommand{\advA}{\mathcal{A}}
+\newcommand{\indcpa}{\mathrm{ind}\mbox{-}\mathrm{cpa}}
+\newcommand{\true}{\texttt{true}}
+\newcommand{\false}{\texttt{false}}
+
+\renewcommand{\Pr}{\mathrm{Pr}}
+\newcommand{\prf}{\mathsf{prf}}
+\newcommand{\dist}{\mathsf{dist}}
+\newcommand{\pred}{\mathrm{pred}}
+\newcommand{\bbG}{\mathbb{G}}
+\renewcommand{\mod}{\textrm{ mod }}
+
+
+\begin{document}
+
+
+\title{{\bf Homework 1 Solutions} }
+\author{Names: TODO}
+\date{}
+
+\maketitle
+
+\section*{Task 1 -- Negligible Functions}
+
+\noindent Recall that a function $\epsilon: \bbN \to \bbR_{\ge 0}$ is {\em
+  negligible} if for all $c \in \bbN$, there exists $\lambda_0(c)$ such that
+$\epsilon(\lambda) \leq \lambda^{-c}$ for all $\lambda \ge \lambda_0(c)$.
+
+\begin{enumerate}
+\item Which ones of the following functions are negligible, and which
+  ones are not? (Logarithms here are base two.) Prove your claim! (Some of these functions have been
+  claimed to be negligible in class -- here, you want to give a proof.)
+\begin{multicols}{3}
+\begin{itemize}
+  \item $\epsilon_1(\lambda) = 2^{-\lambda}$
+  \item $\epsilon_2(\lambda) = 2^{-\log^2(\lambda)}$
+  \item $\epsilon_3(\lambda) = 1/2 + 1/2(-1)^\lambda$
+\end{itemize}
+\end{multicols}
+
+\item  Show that for any two negligible functions $\epsilon_1, \epsilon_2$,
+  and any polynomial $p$ which is non-negative (i.e., $p(\lambda) \geq 0$ on
+  all $\lambda \in \bbN$) the following functions are negligible:
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item $\lambda \mapsto \epsilon_1(\lambda) + \epsilon_2(\lambda)$
+      \item $\lambda \mapsto \epsilon_1(\lambda) \cdot \epsilon_2(\lambda)$
+      \item $\lambda \mapsto p(\lambda) \cdot \epsilon_1(\lambda)$
+    \end{itemize}
+   \end{multicols}
+   \noindent {\bf Hint:} Note that $a \cdot \lambda^c < \lambda^{c+1}$ for any $a
+   \in \mathbb{R}$ and $c \in \bbN$, and large enough $\lambda$. Recall that
+   a polynomial (with degree $d$) is a function of form $p(\lambda) = a_0 +
+   a_1 \lambda + a_2 \lambda^2 + \cdots + a_d \lambda^d$.
+ \end{enumerate}
+
+\newpage
+
+\section*{Task 2 -- Distinguishing Advantages}
+
+\noindent We have seen two approaches to defining PRF
+security of a keyed function $F: \bits^\lambda \times
+\bits^{n(\lambda)} \to \bits^{\ell(\lambda)}$.
+\begin{itemize}
+\item First, via the game $\mathsf{PRF}_{F}(\advA,\lambda)$, and then defining
+  the advantage as $$\Adv^{\mathsf{prf}}_F(\advA,\lambda) = \abs{2 \cdot
+    \Prob{\mathsf{PRF}_{F}(\advA,\lambda) \Rightarrow \true} - 1}\;.$$
+\item Second, via the two games  $\mathsf{PRF}_{F,0}(\advA,\lambda)$ and
+  $\mathsf{PRF}_{F,1}(\advA,\lambda)$, and then defining the advantage as
+  $$\Adv^{\mathsf{prf}'}_F(\advA,\lambda) = \abs{
+    \Prob{\mathsf{PRF}_{F,0}(\advA,\lambda) \Rightarrow \true}-\Prob{\mathsf{PRF}_{F,1}(\advA,\lambda) \Rightarrow \true} }\;.$$
+\end{itemize}
+Prove that the following identity holds for all
+   distinguishers $\advA$:
+   \begin{displaymath}
+     \Adv^{\mathsf{prf}}_F(\advA,\lambda) =
+     \Adv^{\mathsf{prf}'}_F(\advA,\lambda) \;.
+   \end{displaymath}
+   {\bf Hint.} First argue that
+   \begin{displaymath}
+\Prob{\mathsf{PRF}_{F}(\advA,\lambda) \Rightarrow \true} = \frac{1}{2}
+\Prob{\mathsf{PRF}_{F,0}(\advA,\lambda) \Rightarrow \false} +
+\frac{1}{2} \Prob{\mathsf{PRF}_{F,1}(\advA,\lambda) \Rightarrow \true} \;.
+   \end{displaymath}
+
+\newpage
+
+
+\section*{Task 3 -- Message Authentication Codes}
+
+ \noindent Let $F: \bits^\lambda \times \bits^\lambda \to \bits^\lambda$ be a
+ UF-CMA secure MAC. We now consider a few keyed functions constructed using $F$ in the following questions. If the construction is UF-CMA secure, please give a proof. If not, please show an attack.
+ \begin{enumerate}
+ \item Consider $F_1: \bits^\lambda \times
+   \bits^{\lambda} \to \bits^{\lambda + 1}$ such that
+   \begin{displaymath}
+     F_1(K, X) = (F(K, X) , 1) \;,
+   \end{displaymath}
+   for all $K \in \bits^{\lambda}$ and $X \in \bits^\lambda$. Is $F_1$ UF-CMA secure?
+ \item Consider $F_2: \bits^{2\lambda} \times
+   \bits^{\lambda} \to \bits^{2\lambda}$ such that
+   \begin{displaymath}
+     F_2((K_1,K_2), X) = (F(K_1, X), F(K_2, X))\;,
+   \end{displaymath}
+   for all $K_1,K_2 \in \bits^\lambda$ and $X \in \bits^\lambda$. Is $F_2$ UF-CMA secure?
+  \item Consider $F_3: \bits^\lambda \times
+   \bits^{2\lambda} \to \bits^{2\lambda}$ such that
+   \begin{displaymath}
+     F_3(K, (X_1, X_2)) = (F(K, X_1), F(K, X_2)) \;,
+   \end{displaymath}
+   for all $K \in \bits^\lambda$ and $X_1, X_2 \in \bits^\lambda$. Is $F_3$ UF-CMA secure?
+ \end{enumerate}
+Note that here we use vector notation $(X,Y)$ to denote the
+concatenation of two strings $X$ and $Y$.
+
+\newpage
+
+\section*{Task 4 -- Pseudorandom Functions}
+
+ \noindent Let $F: \bits^\lambda \times \bits^\lambda \to
+ \bits^\lambda$ be a keyed function which is a
+ PRF. We now consider a few keyed functions constructed using $F$ in
+ the following questions. If the resulting construction is a PRF, please give a proof. If not, please show an attack.
+ \begin{enumerate}
+ \item  Consider $F_1: \bits^\lambda \times
+   \bits^{2\lambda} \to \bits^{\lambda}$ such that
+   \begin{displaymath}
+     F_1(K, (X_1, X_2)) = F(K, X_1) \oplus F(K, X_2) \;,
+   \end{displaymath}
+   for all $K \in \bits^{\lambda}$ and $X_1, X_2 \in \bits^\lambda$. Is $F_1$ a PRF?
+ \item Consider $F_2: \bits^{2\lambda} \times
+   \bits^{2\lambda} \to \bits^{\lambda}$ such that
+   \begin{displaymath}
+     F_2((K_1, K_2), (X_1, X_2)) = F(K_1, X_1) \oplus F(K_2, X_2) \;,
+   \end{displaymath}
+   for all $K_1,K_2 \in \bits^\lambda$ and $X_1, X_2 \in \bits^\lambda$. Is $F_2$ a
+   PRF?
+  \item Consider $F_3: \bits^\lambda \times
+   \bits^\lambda \to \bits^\lambda$ such that
+   \begin{displaymath}
+     F_3(K, X) = F(K, X) \oplus X \;,
+   \end{displaymath}
+   for all $K \in \bits^\lambda$ and $X \in \bits^\lambda$. Is $F_3$ a PRF?
+   \item Consider $F_4: \bits^\lambda \times
+   \bits^{\lambda-1} \to \bits^{2\lambda}$ such that
+   \begin{displaymath}
+     F_4(K, X) = (F(K, (X,0)), F(K, (X, 1))) \;,
+   \end{displaymath}
+   for all $K \in \bits^\lambda$ and $X \in \bits^{\lambda - 1}$. Is $F_4$ a PRF?
+ \end{enumerate}
+Note that here we use vector notation $(X,Y)$ to denote the
+concatenation of two strings $X$ and $Y$.
+
+\newpage
+
+
+\newcommand{\advG}{\mathcal{G}}
+\newcommand{\Eval}{\mathbf{E}}
+\newcommand{\ks}{\mathcal{K}}
+\newcommand{\ms}{\mathcal{X}}
+\newcommand{\os}{\mathcal{Y}}
+\newcommand{\leftkeys}{\mathsf{Keys}}
+\newcommand{\farkeys}{\mathsf{FarKeys}}
+\newcommand{\diff}{\mathsf{Diff}}
+
+\section*{Breaking UF-CMA
+    Security in Exponential Time}
+
+ \noindent Let $F:\bits^{\lambda} \times \bits^{n(\lambda)} \to \bits^{\ell(\lambda)}$
+ be a keyed function. Consider the following adversary $\advG$ against UF-CMA security of $F$.
+ \begin{center}
+   \begin{minipage}[c]{0.5\textwidth}
+       \underline{{\bf Adversary} $\advG^\Eval(1^{\lambda})$:} \\[0.2ex]
+       $X_1,\ldots,X_q \getsr \bits^{n(\lambda)}$\\
+       For all $i\in [q]$ do $T_i\gets \Eval(X_i)$\\
+       $\leftkeys\gets \{K' \in \bits^{\lambda}|~\forall i\in [q]: F(K',X_i)=T_i\}$\\
+       $K'\getsr \leftkeys$\\
+       $X^*\getsr \bits^{n(\lambda)} \setminus \{X_1,\ldots,X_q\}$\\
+       $T^*\gets F(K',X^*)$\\
+       {\bf return} $(X^*,T^*)$
+   \end{minipage}
+
+ \end{center}
+Consider now an execution of game
+$\mathsf{UF}\mbox{-}\mathsf{CMA}_{F}(\mathcal{G}, \lambda)$. Let $K$
+be the true key that is sampled by the game. Let $\farkeys_K$ be the
+set of keys $K'$ such that $F(K', \cdot)$ and $F(K,\cdot)$ differ on at least
+half fraction of the inputs. Formally, we define the quantity
+\begin{align*}
+  \farkeys_K =\{K' \in \bits^{\lambda}|~ |\diff_{K, K'}| \geq 2^{n(\lambda) - 1}\}\;,
+\end{align*}
+where $\diff_{K, K'} := \{X\in \bits^{n(\lambda)}  |~ F(K, X) \neq F(K', X)\}$.
+
+    \begin{enumerate}
+
+ \item Prove that
+ \begin{align*}
+   \Prob{\leftkeys \cap \farkeys_K \neq \emptyset} \leq  \frac{2^\lambda}{2^q}\;.
+ \end{align*}
+ \item Prove that conditioned on $\leftkeys \cap \farkeys_K
+   =\emptyset$, $F(K, X^*) = F(K', X^*)$ is going to hold with high
+   probability for $K' \getsr \leftkeys$, i.e.,
+ \begin{align*}
+  \Prob{F(K, X^*) = F(K', X^*) \;|\; \leftkeys \cap \farkeys_K
+   =\emptyset} \geq \frac{2^{n(\lambda) - 1}-q}{2^{n(\lambda)}}\;.
+\end{align*}
+ \item Prove that for $\lambda +1\leq q\leq 2^{n(\lambda) - 2}$,
+ \begin{align*}
+   \Adv^{\mathsf{uf}\mbox{-}\mathsf{cma}}_{F}(\advG, \lambda)\geq \frac{1}{8}\;.
+ \end{align*}
+ \end{enumerate}
+
+\end{document}

@@ -1,0 +1,238 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Homework 4}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\noindent\textit{Show that $a^{1729} \equiv a \pmod{1729}$ for all integers $a$. (Note: $1729 = 7 \cdot 13 \cdot 19$.)}
+
+\begin{proof}
+    By Fermat's Little Theorem, we know that for primes, 7, 13 and 19,
+    \begin{align*}
+        a^6 &\equiv 1 \pmod{7} \\
+        a^{12} &\equiv 1 \pmod{13} \\
+        a^{18} &\equiv 1 \pmod{19}. \\
+    \end{align*}
+    We can also factor $1728 = 6 \cdot 288 = 12 \cdot 144 = 18 \cdot 96$.
+    Which means we have:
+    \begin{align*}
+        a^{1728} = a^{(6)^{288}} = 1^{288} &\equiv 1 \pmod{7} \\
+        a^{1728} = a^{(12)^{144}} = 1^{144} &\equiv 1 \pmod{13} \\
+        a^{1728} = a^{(18)^{96}} = 1^{96} &\equiv 1 \pmod{19}. \\
+    \end{align*}
+    
+    Given that 7, 13, and 19 are coprime, we can apply the Chinese Remainder Theorem
+    which states that if:
+
+    \begin{align*}
+        a^{1729} &\equiv 1 \pmod{7} \\
+        a^{1729} &\equiv 1 \pmod{13} \\
+        a^{1729} &\equiv 1 \pmod{19} \\
+    \end{align*}
+    
+    then:
+    \begin{centering}
+        $a^{1729} \equiv a \pmod{1729}$
+    \end{centering}
+
+
+\end{proof}
+
+\section*{Problem 2}
+\noindent\textit{For each example below, determine where the subgroup $H$ is a normal
+subgroup of $G$.}
+
+\noindent\text{(a) $G=\{\text{ functions }f: \mathbb{R} \to \mathbb{R}\}$ under addition, and
+$H=\{f \mid f(1)=0\}$}
+
+Given that the addition of two real valued functions is commutitive, i.e. for real valued functions
+$f, f' \in G$ we have $f + f' = f' + f$, we know that $G$ is abelian, and every subgroup of $G$ is a normal subgroup.
+Given two real valued functions $f,g \in G$, $f$ and $g$ belong to the same coset if
+$(f-g)(1) = 0$ and since every $f(1) = r$, then each coset corresponds to an $r \in \mathbb{R}$.
+
+Therefore, $G/H \cong \mathbb{R}$.
+
+\noindent\text{(b) $G=GL(2,\mathbb{R})$, and $H= \left\{ \left(\begin{matrix}a & 0 \\ 0 & b \end{matrix}\right) \mid a, b \neq 0 \right\}$.}
+
+Let $h= \left( \begin{matrix}
+    a & 0 \\ 0 & b
+\end{matrix} \right)$,
+$g = \left( \begin{matrix}
+    p & q \\ r & s
+\end{matrix} \right)$, and 
+$g^{-1} = \frac{1}{sp-qr}\left( \begin{matrix}
+    s & -q \\ -r & p
+\end{matrix} \right)$.
+
+We evaluate $g^{-1}hg = $
+$\frac{1}{sp-qr}\left( \begin{matrix}
+    s & -q \\ -r & p
+\end{matrix} \right)
+\left( \begin{matrix}
+    a & 0 \\ 0 & b
+\end{matrix} \right)
+\left( \begin{matrix}
+    p & q \\ r & s
+\end{matrix} \right)$.
+
+$hg = \left( \begin{matrix}
+    ap & aq \\ br & bs
+\end{matrix} \right)$,
+$g^{-1}hg = \frac{1}{ps-qr}\left( \begin{matrix}
+    sap-qbr & saq - qbs \\ pbr - rap & pbs - raq
+\end{matrix} \right)$.
+
+The resulting matrix is not a diagonal matrix and thus $g^{-1}hg \not\in H$ and $H$ is not a normal subgroup of $G$.
+
+\noindent\text{(c) $G=S_4$ and $H=\{e, (1\text{ }2)(3\text{ }4), (1\text{ }3)(2\text{ }4), (1\text{ }4)(2\text{ }3) \}$.}
+We observe that $H$ is a finite group of 4 elements where each element is its own inverse. Thus $H \cong \text{Klein-four group}$.
+We show that the Klein-four group is a normal subgroup of $S_4$. 
+
+$S_4/H \cong S_3$.
+
+\section*{Problem 3}
+\noindent\textit{The quaternion group $Q_8$, consists of eight elements \{1, -1, i, -i, j, -j, k, -k \}
+such that $i^2=j^2=k^2=-1$.}
+
+\noindent\text{(a) Show that $Q_8$ is not isomorphic to $D_4$.}
+
+We see that among the elements of $Q_8$, the identity has order 1, the elements $-1,-i,-j,-k$ have order 2,
+and the remaining elements $i, -i, j, -j, k, -k$ have order 4. Considering $D_4$ there are five elements of order 2, namely the 
+four reflections and the rotation of 180 degrees. There is no way to construct an injective function sending all the elements
+of order 2 in $D_4$ to the elements of order 2 in $Q_8$.
+Thus, $Q_8 \not\cong D_4$.
+
+\noindent\text{(b) Find all subgroups of $Q_8$.}
+
+We list all subgroups of $Q_8$. 
+\begin{itemize}
+    \item $\langle 1 \rangle$
+    \item $\{1, -1\}$
+    \item $\{1, -1, i, -i\}$
+    \item $\{1, -1, j, -j\}$
+    \item $\{1, -1, k, -k\}$
+    \item $Q_8$
+\end{itemize}
+The list is exhaustive due to Langrange's Theorem which implies that the order of
+each subgroup must divide the order of $Q_8$. The multiples of 8 are 1, 2, 4, and 8.
+Only the trivial subgroup is order 1 and $Q_8$ is the only subgroup of order 8, thus the any proper, non-trivial
+subgroup must either be of order 2 or order 4. When we attempt to include an element to a subgroup,
+we must also include its inverse, thus the order will always increase by 2. The subgroup $\langle -1 \rangle$ is the
+only subgroup of order 2 since this subgroup includes the identity and the generating element has
+order 2 and is its own inverse. Adding another element of $Q_8$ and its inverse will result in one 
+of the listed subgroups of order 4. We cannot add a single pair to a subgroup of order 4 since
+the order of the resulting set will be 6, which is not a divisor of 8. Thus our list is exhaustive.
+
+\noindent(c) Which of these subgroups is normal? For each one that is normal, name a group
+isomorphic to that quotient.
+
+All of the subgroups listed are normal. The quotient of the trivial subgroup $Q_8/\langle1\rangle$ is isomorphic to 
+$Q_8$ and the quotient of the entire group $Q_8/Q_8$ is isomorphic to $\mathbb{Z}_1$.
+The first listed subgroup is normal because multiplication with the identity and -1 in $Q_8$ is commutative.
+Furthermore without loss of generality, we let subgroup $N = \{1, -1, i, -i\}$. $1 \cdot N \cdot -1 = N$ and for
+$jNj^{-1}$ we check $jij^{-1} \in N$. Since $ji=k$ and $j^{-1} = -j$ we have $jij^{-1} = ji(-j) = (ji)(-j) = k(-j) = -(kj) = -(-i) = i$ since $ji=k$ and $j^{-1} = -j$.
+Since $jij^{-1} = i$ we have that N is a normal subgroup of $Q_8$. This argument applies symmetrically for elements $j$ and $k$.
+Thus we have shown that the listed elements of order 4 are normal subgroups.
+
+\begin{itemize}
+    \item $\{1, -1\} \cong \mathbb{Z}_2$
+    \item $\{1, -1, i, -i\} \cong \mathbb{Z}_4$
+    \item $\{1, -1, j, -j\} \cong \mathbb{Z}_4$
+    \item $\{1, -1, k, -k\} \cong \mathbb{Z}_4$
+\end{itemize}
+
+
+\section*{Problem 4}
+\noindent\textit{Let $M$ and $N$ be normal subgroups of a group $G$. Prove that
+$MN = \{mn | m \in M \text{, } n \in N \}$ is a normal subgroup of $G$. }
+
+\begin{proof}
+    Given that $M$ and $N$ are both normal subgroups of $G$, then we know that
+    $g^{-1}mg \in M$ and $g^{-1}ng \in N$.
+    
+    \begin{centering}
+        $(g^{-1}mg)(g^{-1}ng) = g^{-1}m(gg^-1)ng = g^{-1}(mn)g \in MN \implies$ $MN$ is normal.
+    \end{centering}
+    Additionally we show that MN is a subgroup by showing closure and inverses.
+    \begin{itemize}
+        \item \textbf{Inverse} $mn \implies g^{-1}mng$ and $(g^{-1}mng)^{-1} = (g^{-1}n^{-1}m^{-1}g) \implies
+        (mn)^{-1} \in MN$
+        \item \textbf{Closure} Given $mn, m'n' \in MN \implies g^{-1}mng, g^{-1}m'n'g \in MN$. Therefore
+        $(g^{-1}mng)(g^{-1}m'n'g) = g^{-1}(mnm'n')g \implies mnm'n' \in MN$
+    \end{itemize}
+    Thus since $MN$ is closed under the group operation and every element has an inverse, $MN$ is a subgroup.
+\end{proof}
+
+\section*{Problem 5}
+\noindent\textit{Let $G$ be a group, and let Aut($G$) be the group of automorphisms of $G$. Recall that
+an inner automorphism of $G$ is an automorphism of the form $\varphi_g(x) = gxg^{-1}$ for some
+$g \in G$. Let Inn($G$) be a subset of Aut($G$) denote the set of inner automorphisms of $G$.}
+
+\noindent\text{(a) Show that Inn($G$) $\cong G/Z(G)$, where $Z(G)$ is the center of $G$.}
+\begin{proof}
+    Let $\Phi : G \to \text{Inn}(G)$ where $g \mapsto \varphi_g$. For elements $g, h \in G$ we have
+    $\Phi(gh)(x) = (gh)x(gh)^{-1} = g(hxh^{-1})g^{-1} = \Phi_g(\Phi_h(x)) = \Phi_g \circ \Phi_h(x)$
+    and thus $\Phi$ is a group homomorphism.
+    We define the kernal of $\Phi$. The element $g \in \text{Ker }\Phi$ if and only if 
+    \begin{align*}
+        \varphi_g(x) &= x &\quad \text{for all x} \\
+        gxg^{-1} &= x &\quad \text{for all x} \\
+        gx &= xg &\quad \text{for all x} \\
+    \end{align*}
+    thus $g \in Z(G)$ which is the kernal of $\Phi$.
+
+    By the First Isomorphism Theorem, if we define Ker $\Phi$ as $Z(G)$ and Im $\Phi$ as
+    Inn($G$), then we have the following:
+    \begin{centering}
+        $G/Z(G) \cong \text{Inn}(G)$
+    \end{centering}
+\end{proof}
+
+\noindent\text{(b) Show that Inn$(G)$ is a normal subgroup of Aut$(G)$.}
+
+\begin{proof}
+    To show that Inn$(G)$ is a normal subgroup of Aut($G$), we check for all 
+    $\psi \in \text{ Aut}(G)$ and $\varphi_g \in \text{Inn}(G)$ that $\psi \circ \varphi_g \circ \psi^{-1} \in \text{ Inn}(G)$
+    which means it is an inner automorphism.
+    \begin{align*}
+        (\psi \circ \varphi_g \circ \psi^{-1})(x) &= \psi(\varphi_g(\psi^{-1}(x))) \\
+        &= \psi(g\psi^{-1}(x)g^{-1}) \\
+        &= \psi(g)\psi(\psi^{-1}(x))\psi(g^{-1}) \\
+        &= \psi(g)x\psi(g)^{-1} \\
+        &= \varphi_{\psi(g)}(x) \\
+    \end{align*}
+    We have shown that $(\psi \circ \varphi_g \circ \psi^{-1})(x) = \varphi_{\psi(g)}(x)$
+    where $\varphi_{\psi(g)}$ is an inner automorphism defined by $\psi(g)$ and thus
+    Inn$(G)$ is a normal subgroup of Aut($G$).
+    
+\end{proof}
+
+\end{document}

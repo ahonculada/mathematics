@@ -82,8 +82,41 @@ where $\overline{z}$ is the complex conjugate of $z$.}
 
 \noindent\text{(a)} Show that $\{r_0,\ldots,r_{n-1},s_0,\ldots,s_{n-1}\}$ forms a group under composition.
 
+We show that this set forms a group under composition.
+\begin{itemize}
+    \item \textbf{Closure:} Let $r_a, r_b \in \{r_0,\ldots,r_{n-1},s_0,\ldots,s_{n-1}\}$. Then $r_a \circ r_b(z) = r_{a+b}(z)$.
+        If $a+b \geq n$, then $r_{a+b}(z) = r_{a+b-n}(z)$.
+        Similarly, $s_a \circ s_b(z) = r_{a-b}(z)$. This is because
+        \begin{align*}
+            s_a \circ s_b = \omega^a \overline{\omega^b \overline{z}} = \omega^a \overline{\omega^b} \overline{z} = \omega^{a-b} \overline{z} = r_{a-b}(z)
+        \end{align*}
+        Composing $s_a$ with $r_b$ results in $s_a \circ r_b(z) = \omega^a \overline{\omega^b z} = \omega^{a-b} \overline{z} = r_{a-b}(z)$.
+        We have shown closure under composition.
+    \item \textbf{Associativity:} Composition of functions is associative. For instance,
+        \begin{align*}
+            (r_a \circ r_b) \circ r_c = r_{a+b} \circ r_c = r_{a+b+c}
+        \end{align*}
+        \begin{align*}
+            r_a \circ (r_b \circ r_c) = r_a \circ r_{b+c} = r_{a+b+c}
+        \end{align*}
+        Similarly,
+        \begin{align*}
+            (s_a \circ s_b) \circ s_c = r_{a-b} \circ s_c = r_{a-b-c}
+        \end{align*}
+        \begin{align*}
+            s_a \circ (s_b \circ s_c) = s_a \circ r_{b-c} = r_{a-b-c}
+        \end{align*}
+        We have shown associativity.
+    \item \textbf{Identity:} The identity element is $r_0(z)$.
+    \item \textbf{Inverse:} Given that there are a finite number of $n$ unique functions $r_a$ then the inverse of
+        each $r_a$ is some $r_b$ where $a+b = n$. The inverse of $s_a$ is $s_a$ since $s_a \circ s_a = \omega^{a}\overline{\omega^{a}} = 1 = \omega^0 = r_0$.
+\end{itemize}
+
 \noindent\text{(b)} Explain why this group is isomorphic to the dihedral group
 $D_n$, the group of symmetries of a regular $n$-gon.
+
+This group is isomorphic to $D_n$ because it has the same structure since
+we can map each element in $D_n$ that is a rotation to $r_a$ and each element in $D_n$ that is a reflection to $s_a$.
 
 
 \section*{Problem 3}
@@ -110,10 +143,30 @@ can be paired, then the remaining elements must be paired with themselves. Thus 
 
 \section*{Problem 5}
 \noindent\textit{Let $G$ be a nonempty set closed under an associative operation $\star$.
-Suppose that for all $x,y,x \in G$, if $x \star z = y \text{ or } z\star x = z \star y$, then $x = y$.}
+Suppose that for all $x,y,x \in G$, if $x \star z = y \star z \text{ or } z \star x = z \star y$, then $x = y$.}
 
 \noindent\text{(a)} Prove that if $G$ is finite, then it is a group.
+\begin{proof}
+    Given that $G$ with the associative operation $\star$ is closed under the operation,
+    we must show that $G$ has an identity element and that every element has an inverse.
+
+    It follows from $G$ having the left and right cancellation properties that $\star$ is injective.
+    Since $G$ has finite elements, is closed under $\star$, and no two elements are mapped to the same element, $\star$ is also surjective.
+    
+    Therefore, $\star$ is both injective and surjective and thus a bijection.
+    Since we can map each element in $G$ to an element in $G$, $\star$ is a bijection,
+    and thus each element in $G$ has an inverse.
+
+    Since $G$ is closed under $\star$, we know that the identity element $e$ is in $G$.
+    Therefore, $G$ has an identity element and each element has an inverse.
+    Thus $G$ is a group.
+
+\end{proof}
 
 \noindent\text{(b)} If $G$ is infinite, must it be a group?
+
+If $G$ is a set of infinite elements, then we can no longer claim that
+$\star$ is surjective. This means that the cancellation property does not 
+necessarily imply that $\star$ is a bijection, and we cannot conclude that $G$ is a group.
 
 \end{document}
