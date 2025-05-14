@@ -114,7 +114,10 @@ The resulting matrix is not a diagonal matrix and thus $g^{-1}hg \not\in H$ and 
 
 \noindent\text{(c) $G=S_4$ and $H=\{e, (1\text{ }2)(3\text{ }4), (1\text{ }3)(2\text{ }4), (1\text{ }4)(2\text{ }3) \}$.}
 We observe that $H$ is a finite group of 4 elements where each element is its own inverse. Thus $H \cong \text{Klein-four group}$.
-We show that the Klein-four group is a normal subgroup of $S_4$. 
+We show that the Klein-four group is a normal subgroup of $S_4$. We define an surjective map $f: S_4/H \to S_3$ where the elements
+of $H$ are mapped to the permutations of $\{1,2,3\}$, where the transpositions
+containing 4 will fix the other element. For example, the permutation $(1\text{ }2)(3\text{ }4)$
+fixes 3 and switches the order of 1 and 2 resulting in $(1\text{ }2)$.
 
 $S_4/H \cong S_3$.
 
@@ -185,8 +188,8 @@ $MN = \{mn | m \in M \text{, } n \in N \}$ is a normal subgroup of $G$. }
     \begin{itemize}
         \item \textbf{Inverse} $mn \implies g^{-1}mng$ and $(g^{-1}mng)^{-1} = (g^{-1}n^{-1}m^{-1}g) \implies
         (mn)^{-1} \in MN$
-        \item \textbf{Closure} Given $mn, m'n' \in MN \implies g^{-1}mng, g^{-1}m'n'g \in MN$. Therefore
-        $(g^{-1}mng)(g^{-1}m'n'g) = g^{-1}(mnm'n')g \implies mnm'n' \in MN$
+        \item \textbf{Closure} Given $mn, m'n' \in MN \implies mn(m'n') = m(nm')n$. From the normality of
+        $M$ we have that $n'm' = m^*n'$. Thus we have $m(nm')n = m(m^*n')n = (mm^*)(n'n) \in MN$
     \end{itemize}
     Thus since $MN$ is closed under the group operation and every element has an inverse, $MN$ is a subgroup.
 \end{proof}
