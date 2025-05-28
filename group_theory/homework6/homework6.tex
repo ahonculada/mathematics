@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\bbZ}{\mathbb{Z}}
+
+
+\title{Homework 6}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\noindent(a) How many abelian group of order $2025000 = 2^3 \cdot
+3^4 \cdot 5^5$ are there up to isomorphism?
+
+We know that the number of unique abelian groups is equivalent
+to the integer partitions of the prime powers in the decomposition.
+Therefore given $p(n)$ where $p$ is the partition function which
+counts the number of integer partitions for a given positive integer.
+Thus we have $p(3)=3$, $p(4)=5$, and $p(5)=7$. So the number of 
+abelian groups of order $2025000 = 3 \cdot 5 \cdot 7 = \boxed{105}$.
+
+\noindent(b) For which positive integers $n$ does there exist
+a unique abelian group of order $n$ up to isomorphism?
+
+There exists a unique abelian group of order $n$ up to isomorphism
+for all $n \in \mathbb{Z}_{>0}$ such that $n$ is a square-free integer.
+
+\section*{Problem 2}
+\noindent Find the elementary divisors and invariant factors of
+the group $U_{19019}$. (Note: $19019 = 7\cdot 11 \cdot 13 \cdot 19$)
+
+To find the order of $U_{19019}$, we first find $\phi(19019)$.
+Given the prime decomposition we know $\phi(19019) = (7-1)(11-1)(13-1)(19-1)$
+by Euler's Theorem. Thus the order is 12960. Furthermore, since
+$(7,11,13,19) = 1$, then by the Chinese Remainder Theorem 
+$U_{19019} \cong U_{7} \otimes U_{11} \otimes U_{13} \otimes U_{19}$.
+We know $U_7 \cong \bbZ_6$ since the order of $U_7=(7-1)=6$ and
+there is an element in $U_7$ with order 6, namely $3\in U_7$.
+We make a similar argument for $U_{11} \cong \bbZ_{10}$ since $U_{11}$ has order
+$(11-1)=10$ and element $7\in U_{11}$ has order 10. We claim that
+$U_{13}$ is isomorphic to $\bbZ_{12}$ which must be isomorphic to
+$\bbZ_3 \oplus \bbZ_4$ instead of $\bbZ_3 \oplus \bbZ_2 \oplus \bbZ_2$
+because the maximum order of an element in a direct product group is
+the least common multiple of the orders of the groups. The LCM$(3,2,2)=6$ while
+LCM$(3,4)=12$. Therefore there is an element in
+$\bbZ_3 \oplus \bbZ_4$ with order 12 and $\bbZ_3 \oplus \bbZ_4 \cong \bbZ_{12} \cong U_{13}$.
+We argue similarly for $U_{19} \cong \bbZ_{18} \cong \bbZ_2 \oplus \bbZ_9$ since the LCM$(2,9)=18$ while
+LCM$(2,3,3)=6$.
+
+Given that $U_{19019}$ can be expressed as the direct sum of
+the following cyclic groups:
+\begin{itemize}
+    \item $\bbZ_{2} \oplus \bbZ_{3}$
+    \item $\bbZ_{2} \oplus \bbZ_{5}$
+    \item $\bbZ_{3} \oplus \bbZ_{4}$
+    \item $\bbZ_{2} \oplus \bbZ_{9}$
+\end{itemize}
+we enumerate the elementary divisors of $U_{19019}$:
+
+$\boxed{2,2,2,3,3,4,5,9}$
+
+We find the invariant factors of $U_{19019}$ by creating
+the following table where each row is descending powers of
+a prime:
+\begin{center}
+    \begin{tabular}{c|c|c|c}
+        2 & 2 & 2 & 4 \\
+          & 3 & 3 & 9 \\
+          &   &   & 5 \\
+    \end{tabular}
+\end{center}
+and taking the product of each row gives the order of a
+cyclic group of an inviariant factor. Thus the invariant
+factors of $U_{19019}$ are $\boxed{2, 6, 6, 180}$ and
+$U_{19019} \cong \bbZ_2 \oplus \bbZ_6 \oplus \bbZ_6 \oplus \bbZ_{180}$.
+
+\section*{Problem 3}
+\noindent\textit{Let $G$ be a finite abelian group and let $m$
+be the largest invariant factor of $G$}
+
+\noindent (a) Show that $m$ is the largest order of an element
+of $G$, and the order of any element of $G$ divides $m$.
+
+\begin{proof}
+    Given that $m$ is the largest invariant factor of $G$, we know that
+    for the other invariant factors $m_1, \dots, m_k$ that $m_i \mid m$ for 
+    $1 \leq i \leq k$. Hence, LCM$(ord(m_1),\dots, ord(m_k), ord(m)) = m$ and therefore
+    the maximum order of an element in $G$ is $m$ and any element
+    in $G$ has order dividing $m$ because it is a subgroup of
+    an element of the LCM of the orders of the invariant factors. 
+\end{proof}
+
+\noindent (b) Let $H$ be a subgroup of $G$, and let $m'$ and $m''$
+be the largest invariant factors of $H$ and $G/H$, respectively.
+Show that $m'$ and $m''$ both divide $m$, while $m$ divides 
+$m'\cdot m''$.
+
+\begin{proof}
+    First we show that both $m' \mid m$ and $m'' \mid m$. Since $H$ is a
+    subgroup of $G$ and we know the invariant factors of subgroups
+    divide the group, the largest invariant factor $m'$ of $H$ divides $m$.
+    Similarly, the invariant factors of the quotient $G/H$ also divide
+    those of the ambient group, therefore $m'' \mid m$.
+
+    Finally we show $m \mid m' \cdot m''$. Observe that
+    LCM$(m', m'') = m$. Thus $m \mid \text{LCM}(m', m'') \leq m' \cdot m''$.
+\end{proof}
+
+\section*{Problem 4}
+\noindent Let $G$ be a finite abelian group of order $n$. Show
+that there are exactly $n$ homomorphisms from $G$ to $\mathbb{C}^*$.
+
+\begin{proof}
+   By the Fundamental Theorem of Finite Abelian Groups, we are able to
+   write $G$ as the direct sum of cyclic groups, each of prime
+   power order. We define the homomorphism $\phi: G \to \mathbb{C}^*$ which
+   sends $k \mapsto e^{\frac{2\pi\cdot i\cdot k}{n}}$ which sends
+   each $k \in \bbZ_{p^x}$, where $p^x$ is a prime power, to the $k^{th}$ rooth unity. 
+   For each $\bbZ_{p^x}$ we have $p^x$ choices to where send the generator 1. The
+   product of all $p^x = n$ therefore there are exactly $n$ homomorphisms
+   from $G$ to $\mathbb{C}^*$. 
+\end{proof}
+
+\section*{Problem 5}
+Let $G$ be a finite abelian group, and let $n$ be a divisor of
+the order of $G$. Show that the number of elements of $G$ whose
+order divides $n$ is a multiple of $n$.
+
+\begin{proof}
+   We observe that for any integer $n \mid |G|$ the number of 
+   element that have order $n$ is a multiple of $\phi(n)$. 
+\end{proof}
+
+\end{document}

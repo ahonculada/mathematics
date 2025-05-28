@@ -62,6 +62,50 @@ The subgroup of all $S_3$ corresponds to all of $S_4$ which has order 24.
 The subgroups Klein-four group and $A_4$ are normal in $S_4$.
 
 \section*{Problem 2}
+\noindent\textit{Let $H$ and $N$ be subgroups of $G$ with $N$ normal.}
+
+\noindent(a) Show that $N \cap H$ is a normal subgroup of $H$, and $N$ is a normal
+subgroup of $NH = \{nh | n \in N, h \in H \}$.
+
+\begin{proof}
+    Let $h \in H$ and $x \in H \cap N$. Since $H$ is a subgroup of
+    $G$ then we also know that $h \in G$. Given that $N$ is normal in
+    $G$ then for all $n \in N$ we know that $h^{-1}nh \in N$. By definition
+    of subgroup, we know that $H$ is closed and thus $h^{-1}xh \in H$.
+    That means $h^{-1}xh$ is also in $N$ by normality and thus
+    $h^{-1}xh \in H \cap N$.
+    Since $H$ is a subgroup of $G$, then $h^{-1}xh \in H \cap N$ and 
+    $H \cap N$ is normal in $H$.
+
+    We know that $N$ is normal in $G$ so for $n \in N$ and $h \in H$ we have
+    $h^{-1}nh \in N$. Therefore,
+    \begin{center}
+    $hN = h(h^{-1}nh) = (hh^{-1})nh = nh \in Nh$
+    \end{center}
+    Hence, $hN = Nh$
+\end{proof}
+
+\noindent(b) Show that $H/(N \cap H) \cong NH/N$.
+
+\begin{proof}
+    Let $\varphi: H \to HN/N$ where $\varphi(h) = hN$. We see that
+    the coset $hN$ is an element of $HN/N$. Next we show that
+    $\varphi$ is a surjective homomorphism.
+    \begin{center}
+        $\varphi(xy) = xyN = (xN)(yN) = \varphi(x)\varphi(y)$
+    \end{center}
+    Therefore $\varphi$ is a homomorphism. Also 
+    \begin{center}
+        $\varphi(h) = hN = hnN \in HN/N$
+    \end{center}
+    We have shown that $\varphi$ is a surjective isomorphism.
+    We also observe that ker$(\varphi) = \{h \in H | \varphi(h) = e_{HN/N}\}$
+    where $h$ is both an element of $H$ and of the coset $hN$. Since we have that
+    $h \in H$ and $h \in N$ then ker$\varphi = H \cap N$.
+
+    We conclude by the First Isomorphism Theorem, $H/(N \cap H) 
+    \cong NH/N$.
+\end{proof}
 
 \section*{Problem 3}
 \noindent\textit{Given $g,h \in G$, the commutator of $g$ and $h$ is
@@ -86,8 +130,26 @@ We have thus shown that $H$ is normal in $G$.
     We have that $ghg^{-1}h^{-1} \in H$ and we have shown that $H$ is normal
     in $G$. We now show that if $H$ is normal
     in $G$ then $G/H$ is abelian if and only if $ghg^{-1}g^{-1} \in H$ for all
-    $g, h \in G$. We know that $G/H$ is abelian if and only if $Hab = HaHb = HbHa = Hba$ for
-    all $a,b \in G$. $Hab = Hba$ if and only if $(ab)(ba)^{-1} \in H$
+    $g, h \in G$. We know that $G/H$ is abelian if and only if $Hgh = HgHh = HhHg = Hhg$ for
+    all $g,h \in G$. We observe that $Hgh = Hhg$ if and only if $(gh)(hg)^{-1} \in H$ and 
+    $(gh)(hg)^{-1} = ghg^{-1}h^{-1}$. Then it follows that since 
+    $ghg^{-1}h^{-1} \in H$ for all $g,h \in G$, then $G/H$ must be abelian.
+\end{proof}
+
+\noindent(c) Show that every subgroup $N$ of $G$ containing $H$ is normal.
+
+\begin{proof}
+    To show normality we must show that $gN = Ng$ for all $g \in G$.
+    Let $gn \in gN$.
+
+    \begin{align*}
+        gn &= gn(e) \\
+        &= gn(g^{-1}n^{-1}ng) \\
+        &= (gng^{-1}n^{-1})ng \\
+        &= n'ng \\
+        &= n''g \in Ng
+    \end{align*}
+    Therefore $gN = Ng$ and $N \supseteq H$ is normal in $G$. 
 \end{proof}
 
 \section*{Problem 4}
@@ -97,11 +159,31 @@ $A_n \times Z_2$?}
     We show that for all $n \geq 3, A_n \times Z_2 \not \cong S_n$.
     We know that $S_n$ has a trivial center, meaning that no elements in $S_n$
     other than the identity commute with every element of $S_n$. However when considering
-    the element $(e, 1) \in A_n \times \mathbb{Z}_2$ we see that it is order 2
-    and commutes with every element in $A_n \times \mathbb{Z}_2$, showing that it does not
+    the element $(e, 1) \in A_n \times \mathbb{Z}_2$ we see that it is order 2, meaning that
+    it is not the identity,and it commutes with every element in $A_n \times \mathbb{Z}_2$, showing that it does not
     have a trivial center. Therefore we conclude that $S_n$ is not isomorphic to $A_n \times \mathbb{Z}_2$ for $n \geq 3$.
 \end{proof}
 
 \section*{Problem 5}
+\noindent\textit{Let $D_6$ be the dihedral group obtained as the symmetry
+group of a regular hexagon centered at the origin with one vertex at (1, 0).
+Let $r$ be the rotation by $\frac{\pi}{3}$ counterclockwise and $s$ the reflection 
+over the x-axis, the elements of $D_6$ can be written as $r^is^j$, where
+$0 \leq i \leq 5$ and $0 \leq s \leq 1$.}
+
+\noindent(a) Express $D_6$ as the (internal) direct product of two nontrivial
+subgroups $M$ and $N$.
+
+We express $D_6$ as the inner direct product of $M \times N$ where $M = 
+\langle r^3 \rangle$ and $N = \langle r^2, s^1\rangle$. The intersection
+of $M$ and $N$ is trivial and both are normal subgroups in $D_6$.
+
+\noindent(b) Using part (a), express $D_6$ as isomorphic to the (external) direct
+product of two familiar (named) nontrival subgroups, describes the images
+of $r$ and $s$ under this isomorphism.
+
+$D_6$ can be expressed as the external direct product of $S_3 \times \mathbb{Z}_2$.
+Under this isomorphism $\varphi$ we see that Im$(\varphi(s)) = ((1\text{ }2),0)$ and
+Im$(\varphi(r)) = ((1\text{ }2\text{ }3),1)$.
 
 \end{document}

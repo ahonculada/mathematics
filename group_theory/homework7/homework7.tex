@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+
+\title{Homework 7}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\noindent \textit{Consider the Dihedral Group $D_n = \{r_0, r_1,... , r_{n-1}, s_0, ... , s_{n-1} \}$
+with 
+\begin{center}
+    $r_ar_b = r_{a+b}, \quad r_as_b = s_{a+b}, \quad s_ar_b = s_{a-b}, \quad s_as_b = r_{a-b},$
+\end{center}
+where indices are taken modulo $n$. Describe the conjugacy classes of $D_n$ for all $n \geq 3$.}
+
+We describe the conjugacy classes of $D_n$ in two cases: $n$ is even and $n$ is odd. 
+
+When $n$ is even, the conjugacy classes can be described as follows:
+\begin{itemize}
+    \item $\{e\}$
+    \item $\{r^k, r^{-k}\}$ for all $1 \leq k < \frac{n}{2}$
+    \item $\{r^{\frac{n}{2}}\}$
+    \item $\{r^{k}s\}$ for all even $0 \leq k < n$
+    \item $\{r^{k}s\}$ for all odd $1 \leq k < n$.
+\end{itemize}
+Which gives a total of $1 + \frac{n}{2} - 1 + 1 + 2 = \frac{n}{2} + 3$ conjugacy classes.
+
+In the case where $n$ is odd, the conjugacy classes are described as follows:
+\begin{itemize}
+    \item $\{e\}$
+    \item $\{r^k, r^{-k}\}$ for all $1 \leq k \leq \frac{n-1}{2}$
+    \item $\{r^ks\}$ for $0 \leq k \leq n-1$
+\end{itemize}
+Which gives a total of $1 + (\frac{n-1}{2}) + 1 = \frac{n+3}{2}$ conjugacy classes. 
+
+\section*{Problem 2}
+\noindent \textit{Let $G$ be a group acting on a set $X$. Show that if $x,y \in X$ lie in the same orbit,
+then $Stab_x$ and $Stab_y$ are conjugate subgroups.}
+
+\begin{proof}
+    Given $x,y \in X$, since $x$ and $y$ lie in the same orbit, we have that
+    there exists some $g \in G$ such that $x\cdot g = y$. $\text{Stab}_x$ and
+    $\text{Stab}_y$ are conjugate subgroups if $\text{Stab}_y = g \cdot \text{Stab}_x \cdot g^{-1}$.  
+    For $f \in \text{Stab}_y$ we have $y = f \cdot y \implies (g \cdot x) = f \cdot (g \cdot x) \implies (g \cdot x) =  (f \cdot g) \cdot x
+    \implies g^{-1}g \cdot x = g^{-1}fg \cdot x \implies x = g^{-1}fg \cdot \implies g^{-1}fg \in \text{Stab}_x$ and
+    $f \in g\text{Stab}_xg^{-1}$.
+    Also for $f \in g\text{Stab}_xg^{-1}$ and $s \in  \text{Stab}_x$ we have $f = gsg^{-1}$.
+    It follows that $f \cdot y = gsg^{-1} \cdot y = gsg^{-1} \cdot (gx) = gs \cdot x = g \cdot x = y \implies f \cdot y = y$. Therefore $f \in \text{Stab}_y$.
+
+    We have shown that if $x,y \in X$ lie in the same orbit then $g\text{Stab}_xg^{-1} = \text{Stab}_y$ and $\text{Stab}_x$ and
+    $\text{Stab}_y$ are conjugate subgroups.
+\end{proof}
+
+\section*{Problem 3}
+\noindent \textit{Let $G$ be a finite simple group, and let $H$ be a proper subgroup
+of $G$ of index $k$. Show that $|G|$ divides $k!$.}
+
+\begin{proof}
+    Given that $H$ is a proper subgroup of finite simple group $G$, and that $[G:H]=k$, we know that there
+    are $k$ number of distinct left cosets of $H$ in $G$. Let $C$ be the set of these left cosets, $g'H$.
+    We consider the action of $G$ on this set of cosets $C$. By definition
+    that means there exists a group homomorphism $\varphi: G \to S_k$ since
+    the elements of $g \in G$ permute the elements of $C$. Examining the kernel of $\varphi$ we
+    have that ker$(\varphi)=\{g \in G \mid gg'H = g'H \text{ for all } g'H \in C \}$. By
+    defining the kernel of $\varphi$ as such, we also have it that if $gg'H = g'H$ then
+    $g'H = gg'H \implies (g')^{-1}gg' \in H$ and $g \in g'H(g')^{-1}$. So for all
+    $g' \in G$, $g$ is in $\bigcap\limits_{g' \in G} g'Hg'^{-1}$. This is the definition of
+    a normal subgroup of G. However we are given that $G$ is simple, therefore
+    ker$(\varphi) = \{ e \}$ or $G$. If ker$(\varphi) = G$ then $gH = H$ which
+    implies $H=G$. This contradicts our premise that $H$ is a proper subgroup of $G$.
+    Therefore we must have it that ker$(\varphi) = \{ e\}$. Given that the kernel of $\varphi$
+    is the trivial group, we know that $\varphi$ is injective and that $G \hookrightarrow S_k$.
+    Therefore $|G| \mid |S_k|$ and $|G| \mid k!$.
+\end{proof}
+
+\section*{Problem 4}
+\noindent \textit{Let $C$ be a conjugacy class of $S_n$. Show that one of the following
+holds:
+\begin{itemize}
+    \item $C$ is disjoint from $A_n$
+    \item $C$ is a conjugacy class of $A_n$
+    \item $C$ splits into two conjugacy classes of $A_n$ of equal size
+\end{itemize}
+}
+
+\section*{Problem 5}
+\noindent \textit{Let $G$ be a finite group of order $n$, and let $p$ be a prime
+dividing $n$. Let $X$ be the set of $p$-tuples $(g_1, g_2, ... , g_p)$, where
+$g_i \in G$ for all $i$, and $g_1g_2 \cdots g_p = e$.}
+
+\noindent (a) What is $|X|$?
+
+For any $p$-tuple in $X$, when considering the first $p-1$ spots, at each spot there are $n$
+possible elements to choose from. The final $p^{th}$ spot in the tuple must be the inverse of $g_1g_2...g_{p-1}$.
+Therefore $|X| = n^{p-1}$. 
+
+\noindent (b) Show that $\mathbb{Z}_p$ acts on $X$ by cyclic shift,
+and describe the fixed points $X^{\mathbb{Z}_p}$ under this action.
+
+$\mathbb{Z}_p$ acts on $X$ since for a given cyclic shift $g,h \in \mathbb{Z}_p$ and
+for a $p$-tuple $x \in X$, if $g=0$, then $g\cdot x= x$ and for non-zero $g,h$ we have
+$(g+h) \cdot x = g \cdot (h \cdot x)$. This is due to the observation that
+cyclic shifts do not change the overall product of the elements of a given tuple.
+
+The fixed points of $X^{\mathbb{Z}_p}$ only occur when
+$g \cdot x = x$ which is when cycling the order of the elements of the tuple
+does not change the product. This is only true when all of the elements of the tuple
+are the same. Each fixed point in $X^{\mathbb{Z}_p}$ is of the form 
+$(g,g,...,g)$ where for any pair in the tuple, $g_i = g_j$ for all $1 \leq i < j \leq p$ and
+$g^p = e$.
+
+\noindent (c) From parts (a) and (b), deduce that $G$ contains an element
+of order $p$.
+
+\begin{proof}
+From the orbit-stabilizer theorem, we know that the size of an orbit of $X$ must
+be equal to $\frac{|\mathbb{Z}_p|}{|Stab_x|} = \frac{p}{|Stab_x|}$.
+Therefore every orbit under $\mathbb{Z}_p$ has either size 1 if it is a fixed point and the
+stabilizer is all of $\mathbb{Z}_p$, or size $p$ if only
+the identity is in the stabilizer. We know that there
+is at least one fixed point since every element in the $p$-tuple can be the identity. We let $f =$ the number of fixed points
+of $X$ under the action of $G$ and $f \geq 1$. So far we have $|X| = n^{p-1} \implies |X| - f = n^{p-1} - f$.
+We also know the remaining elements of $X$ each lie in an orbit of size $p$. So for some $r$ amount
+of orbits we have $|X| = n^{p-1} = f + rp$, and since we are
+given $p \mid n$ this further imples that $f \equiv 0 \pmod{p} \implies p \mid f$
+and $f \geq p$ since $f \geq 1$. We have shown that $G$ contains at least one
+element of order $p$.
+\end{proof}
+
+\end{document}
