@@ -1,0 +1,240 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{datetime} % Add this line to include the datetime package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+%\usepackage{hyperref}
+\usepackage{xcolor} % Required for defining custom colors
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5} % Define a darker blue color
+
+\usepackage[colorlinks=true, linkcolor=darkblue, urlcolor=darkblue, citecolor=darkblue]{hyperref} % Use the darker blue color
+
+% Define theorem style
+\theoremstyle{plain} % Bold title, italic body
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Bold title, normal body
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\fZ}{\mathbf{Z}}
+
+\title{Homework 8}
+\author{Aaron Honculada}
+\date{\monthname[\month] \the\year}
+
+\begin{document}
+
+\maketitle
+\section*{Problem 1}
+\noindent \textit{Show that a group of order 105 is not simple.}
+
+We are given the order of a group $G$ = 105. The prime factorization of $|G| = 3 \cdot 5 \cdot 7$.
+When considering the Sylow 3-subgroups, by the Third Sylow Theorem there can only be 1 or 7 Sylow 3-subgroups
+since $7 \equiv 1 \equiv 1 \pmod{3}$ and $7 \mid (5 \cdot 7)$. We denote this as $n_3 \in \{1, 7\}$. In the case where
+$n_3 = 1$ then by the Second Sylow Theorem, the single Sylow 3-subgroup is normal and therefore $G$ is not simple.
+We consider the case where $n_3=7$. If there are seven Sylow 3-subgroups, we know that their intersection is the trivial
+group. Therefore there are $7 \cdot (3-1) =14$ elements in $G$ of order 3. 
+
+We now consider the remaining $105 - 15 = 91$ remaining elements. By the Third Sylow Theorem, we know that the number of 
+Sylow 5-subgroups are either 1 or 21 since $21 \equiv 1 \equiv 1 \pmod{5}$ and $21 \mid (3 \cdot 7)$. We similarly
+denote this as $n_5 \in \{1, 21\}$. By the Second Sylow Theorem, if $n_5 = 1$ then the lone Sylow 5-subgroup
+is normal and $G$ is not simple. We consider the case where $n_5 = 21$. The twenty one Sylow 5-subgroups only
+intersect at the identy element, therefore we have $21 \cdot (5-1) = 84$ elements of order 5.
+
+We finally consider the remaining $91-84 = 7$ elements of $G$ who do not have order 3 or 5. By the Third
+Sylow Theorem, we have it that the number of Sylow 7-subgroups $n_7 \in \{1, 15\}$ since 
+$15 \equiv 1 \equiv 1 \pmod{7}$ and $15 \mid (3 \cdot 5)$. By the Second Sylow Theorem, for
+$G$ not to be simple it must be that $n_7 = 15$, since if $n_7 = 1$ then the single Sylow 7-Subgroup must
+be normal and $G$ is not simple. When we consider the case where $n_7 = 15$ then these
+fifteen Sylow 7-subgroups intersect at the trivial group and we have $15 \cdot (7-1) = 90$ elements of order 7.
+However this exceeds the remaining number of elements in $G$ since $90 > 7$ and therefore since we cannot have 
+$n_3 \neq 1$ and $n_5 \neq 1$ and $n_7 \neq 1$, then one of these three numbers must be equal to 1 and by the Second
+Sylow Theorem that sole Sylow p-subgroup must be normal and thus $G$ is not simple.
+
+\section*{Problem 2}
+\noindent \textit{Let $N$ be a normal subgroup of a finite group $G$, and let
+$K$ be a normal subgroup of $N$.}
+
+\noindent (a) Show that if $K$ is a Sylow p-subgroup of $N$, then $K$ is a normal subgroup of $G$.
+\begin{proof}
+    We consider $g \in G$. Given that $N \trianglelefteq G$, we know that $gNg^{-1} = N$. Given that $K$ is a Sylow p-subgroup
+    of $N$, be definition of Sylow p-subgroup the order of $K$ is the largest prime power $p^n$ that divides $N$. Also given
+    that conjugation is a group automorphism that preserves order, we know that $|K| = |gKg^{-1}| = p^n$. Therefore $gKg^{-1} \subseteq
+    gNg^{-1}$. Since $gKg^{-1}$ is a subgroup of $N$ with the order $p^n$ we have it that $gKg^{-1}$ is also a Sylow p-subgroup of $N$. By
+    the Second Sylow Theorem, if $K$ is normal and a Sylow p-subgroup of $N$, then it must the the only Sylow p-subgroup for that $p$. Therefore
+    it must be the case that $gKg^{-1} = K$ for all $g \in G$. This is the definition of normal subgroup and thus when $K$ is a Sylow p-subgroup of $N$, then $K$
+    is a normal subgroup of $G$.
+\end{proof}
+
+\noindent (b) Give an example showing that the conclusion of part (a) may not hold if $K$ is not a Sylow p-subgroup of $N$.
+
+\section*{Problem 3}
+
+
+\noindent (a) For any prime $p$, show that if $G$ is a nonabelian group of order $p^3$ with center $\mathbf{Z}$, then $\mathbf{Z} \cong
+\mathbb{Z}_p$ and $G/\mathbf{Z} \cong \mathbb{Z}_p \times \mathbb{Z}_p$.
+\begin{proof}
+    We know from Proposition 3.5 from class lecture that the center of any finite p-group is nontrivial. We have that the order of $\mathbf{Z} \cong
+    0 \pmod{p}$ and thus the only values for the order of the center are powers of $p$. Given that $|G| = p^3$ then $|\mathbf{Z}|$ must be either
+    $p, p^2, \text{ or, }p^3$. If $|\fZ| = p$ then $\mathbf{Z} \cong \mathbb{Z}_p$ and we are done. 
+    
+    We now consider the other two cases where $|\fZ| = p^2, p^3$. If $|\fZ| = p^2$ then the quotient 
+    $G/\fZ$ has order $p$. This implies that $G/\fZ$ is cyclic which further implies that $G$ is abelian by Proposition 3.6 as presented in lecture. This contradicts the hypothesis that 
+    $G$ is nonabelian and therefore $|\fZ| \neq p^2$. If $|\fZ| = p^3$ then the entire group $G$ lies in the center $\fZ$.
+    This also implies that $G$ is abelian, which contradicts the hypothesis that $G$ is not abelian. Therefore $|\fZ| = p$ and
+    $\fZ \cong \bZ_p$.
+    
+    When considering the quotient $G/\fZ$, we know that $|G| = p^3$ and $|\fZ|= p$. Therefore we have that
+    the order of $G/\fZ = p^2$. By Theorem 3.14, we know that all group of order $p^2$ is abelian and hence is isomorphic to
+    $\bZ_{p^2} \cong \bZ_p \times \bZ_p$. Therefore $G/\fZ \cong \bZ_p \times \bZ_p$.
+\end{proof}
+
+\noindent (b) Let $H_p$ be a nonabelian group of order $p^3$ consisting of matrices with entries in $\mathbb{Z}_p$ of the form:
+\begin{center}
+    $\begin{pmatrix}
+        1 & a & c \\
+        0 & 1 & b \\
+        0 & 0 & 1
+    \end{pmatrix}$
+\end{center}
+under multiplication.
+Describe the center $\mathbf{Z}$ and give a surjective homomorphism $f: H_p \to \mathbb{Z}_p \times \mathbb{Z}_p$ with kernel $\mathbf{Z}$.
+
+When considering the product of two matrices in $H_p$ we see the following:
+\begin{center}
+    $\begin{pmatrix}
+        1 & a & c \\
+        0 & 1 & b \\
+        0 & 0 & 1
+    \end{pmatrix}$
+    $\begin{pmatrix}
+        1 & x & z \\
+        0 & 1 & y \\
+        0 & 0 & 1
+    \end{pmatrix}$ =
+    $\begin{pmatrix}
+        1 & a+x & c+ay+z \\
+        0 & 1 & b+y \\
+        0 & 0 & 1
+    \end{pmatrix}$ 
+\end{center}
+Therefore multiplication is only commutative when $ay=xb$ for all $x,y \in \bZ_p$. 
+This can only be true when both $a=0$ and $b=0$.
+We describe $\fZ$, the center of $H_p$, as matrices of the following form
+\begin{center}
+    $\begin{pmatrix}
+        1 & 0 & c \\
+        0 & 1 & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}$
+\end{center}
+where $c \in \bZ_p$. 
+
+Focusing on the entries in the above matrix multiplication which contain $a+x$ and $b+y$, we 
+identify a surjecive homomorphism $f: H_p \to \bZ_p \times \bZ_p$.
+
+Let $f\left(
+    \begin{pmatrix}
+        1 & a & c \\
+        0 & 1 & b \\
+        0 & 0 & 1
+    \end{pmatrix}\right) = (a,b) \in \bZ_p \times \bZ_p$.
+
+Since 
+\begin{center}
+    $\begin{pmatrix}
+        1 & a & c \\
+        0 & 1 & b \\
+        0 & 0 & 1
+    \end{pmatrix}$
+    $\begin{pmatrix}
+        1 & x & z \\
+        0 & 1 & y \\
+        0 & 0 & 1
+    \end{pmatrix}$ =
+    $\begin{pmatrix}
+        1 & a+x & c+ay+z \\
+        0 & 1 & b+y \\
+        0 & 0 & 1
+    \end{pmatrix} \implies f(AB) = (a+x, b+y) = f(A)f(B)$ 
+\end{center}
+then $f$ is a group homomorphism whose kernel is $\fZ$.
+
+The image of $f$ is all of $\bZ_p \times \bZ_p$ and therefore $f$ is surjective.
+
+\noindent (c) Is $H_2$ isomorphic to the dihedral group $D_4$ or the quaternion group $Q_8$?
+
+We claim that $H_2 \cong D_4$ and not $Q_8$. The elements $\pm i, \pm j, \pm k \in Q_8$ have order 4 and only the
+element $-1$ in $Q_8$ has order 2. However in $H_2$ we can consider the two matrices:
+\begin{center}
+    $\begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 1 \\
+        0 & 0 & 1
+    \end{pmatrix}$ and 
+    $\begin{pmatrix}
+        1 & 1 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}$.
+\end{center}
+These are two distinct elements in $H_2$ that have order 2 since squaring each matrix
+gives the identity matrix. Also each of these matrices
+can be mapped to a rotation element of $D_4$. Since $H_2$ has more than one
+element that has order two, we claim that $H_2 \not \cong Q_8$ and instead
+$H_2 \cong D_4$.
+
+\section*{Problem 4}
+\noindent \textit{Let $N$ be a group and Aut($N$) the group of automorphisms of $N$. Let $H$ be a group with a homomorphism $
+\varphi: H \to \text{Aut}(N)$ sending $h \to \varphi_h$ for $h \in H$.}
+
+\noindent (a) Show that the set of ordered pairs $(n, h)$ for $n \in N$ and $h \in H$ under the product
+\begin{center}
+    $(n,h)(n',h') = (n\varphi_h(n'), hh')$
+\end{center}
+forms a group.
+
+\begin{proof}
+We verify that the set of order pairs $(n, h)$ where $n \in N$ and $h \in H$ under
+this product satisfy the group axioms: closure, identity, inverse, and associativity.
+
+\begin{itemize}
+    \item \textbf{Closure} Given $\varphi_h \in$ Aut$(N)$ and $\varphi_h(n') \in N$ and therefore
+    $n \cdot \varphi_h(n') \in N$ and $hh' \in H$ we see that $(n\cdot \varphi_h(n'), hh') \in G$ for all $n,n',h,h' \in G$.
+    \item \textbf{Identity} We claim the identity element in $G$ be $(e_N, e_H)$. Given that $\varphi_{e_H}$ is the identity permutation
+    and $\varphi_h(e_N) = e_N$, then we see that left multiplying $(e_N, e_H)(n,h) =
+    (e_N \cdot \varphi_{e_H}(n), e_Hh)=(n,h)$. Similarly right multiplying we have 
+    $(n,h)(e_N, e_H) = (n\cdot \varphi_h(e_N), he_H) = (n, h)$.
+    \item \textbf{Inverse} We verify that $(n,h)^{-1} = (\varphi_{h^{-1}}(n^{-1}), h^{-1})$.
+        \begin{align*}
+            (n,h)(\varphi_{h^{-1}}n^{-1}, h^{-1}) &= (n\cdot \varphi_h(\varphi_h^{-1}(n^{-1})), hh^{-1}) \\
+             &= (n\cdot n^{-1},e_H) \\
+             &= (e_N, e_H)
+        \end{align*}
+    \item \textbf{Associativity} Since $\varphi_{h} \in \text{Aut}(N)$ is a group homomorphism, we have: 
+        \begin{align*}
+    ((n_1,h_1)(n_2,h_2))(n_3,h_3) &= (n_1,h_1)((n_2,h_2)(n_3,h_3)) \\
+    (n_1\cdot \varphi_{h_1}(n_2),h_1h_2)(n_3,h_3) &= (n_1,h_1)(n_2 \cdot \varphi_{h_2}(n_3),h_2h_3) \\ 
+    (n_1 \cdot \varphi_{h_1}(n_2)\cdot \varphi_{h_1h_2}(n_3), h_1h_2h_3) &= (n_1 \cdot \varphi_{h_1}(n_2)\cdot \varphi_{h_1h_2}(n_3), h_1h_2h_3)
+        \end{align*}
+\end{itemize}
+\end{proof}
+
+\noindent (b) Explain how this can be used to construct a non-abelian group of order $pq$, where $p, q$ are primes with $q \equiv 1 \pmod{p}$.
+
+We can construct a nonabelian group using this product with the cyclic groups $\bZ_p$ and $\bZ_q$. We shall
+notate this product as the symbol ``$\rtimes$" and call it semi-direct product. First we identify a bijection between
+Aut$(\bZ_q)$ and $\bZ_{q-1}$. For every automorphism $\varphi \in \text{Aut}(\bZ_q)$ we can map it to an integer in $\bZ_{q-1}$. 
+
+\noindent (c) When $N=\bZ_3$ and $H=\bZ_4$, one can use this construction for form
+a nonabelian group $T$ of order 12. Describe the group multiplication on ordered pairs $(a,b)$ for
+$a \in \bZ_3$ and $b \in \bZ_4$, and show that $T$ is not isomorphic to $A_4$ or $D_6$.
+
+\end{document}

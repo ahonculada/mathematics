@@ -109,6 +109,22 @@ holds:
 \end{itemize}
 }
 
+\begin{proof}
+    We show that given that $C$ is a conjugacy class of $S_n$, then either it must be disjoint from
+    $A_n$, is a conjugacy class of $A_n$ or splits into two equal sized conjugacy classes
+    of $A_n$ of equal size. Since all elements of a conjugacy class share the
+    same cycle type, then if $C$ contains only odd permutations $\sigma \in S_n$ then 
+    $C \cup A_n = \emptyset$. If $C$ contains only even permutations, then it is only a 
+    single conjugacy class in $A_n$ if its centralizer contains an odd permutation. Let $\sigma, \tau \in S_n$
+    where $\tau$ is an odd permutation and $\tau\sigma\tau^{-1} = \sigma$. If its centralizer
+    only contains even permutations, it can be split into two equal sized conjugacy classes in $A_n$, one for
+    $\sigma$ and the other for $\tau\sigma\tau^{-1}$ Assume for the sake of
+    contradiction that the two classes are not disjoint, then there exists a $g, h \in A_n$ such that
+    $g\sigma g^{-1} = h\tau\sigma\tau^{-1}h^{-1}$. This implies that $\sigma = g^{-1}h\tau\sigma\tau^{-1}h^{-1}g$ and
+    therefore $g^{-1}h\tau$, an odd permutation, commutes with $\sigma$. This is a contradiction and
+    therefore the two classes are disjoint.
+\end{proof}
+
 \section*{Problem 5}
 \noindent \textit{Let $G$ be a finite group of order $n$, and let $p$ be a prime
 dividing $n$. Let $X$ be the set of $p$-tuples $(g_1, g_2, ... , g_p)$, where
